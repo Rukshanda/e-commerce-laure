@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+   <%- include('./partials/head') %>
+
+<body>
+        <%- include('./partials/header') %>
+
+    
+    <div class="contact-page w-full max-w-auto h-[100vh] py-20 px-20 ">
+       <div class="contact poppins w-full flex flex-row items-center h-full border border-[#1c1c1c] shadow-[rgba(0,0,0,0.3)_0px_19px_38px,rgba(0,0,0,0.22)_0px_15px_12px]">
+  <div class="contact-left  w-[50%] flex  px-20  flex-col gap-5 h-full justify-center">
+             <div class="contact-heading">
+                <p class="text-4xl font-bold ">Contact Us</p>
+             </div>
+            <div class="contact-content">
+               <form action="" class="contact-form flex flex-col gap-4 w-[80%]">
+                  <input type="text" placeholder="Enter Your Name" class="bg-ivorywhite border border-[#d4af37] text-charcolblack px-3 py-5 placeholder-[#1c1c1c] outline-none">
+                  <input type="email" placeholder="Enter Your Email" class="bg-ivorywhite border border-[#d4af37] text-charcolblack px-3 py-5 placeholder-[#1c1c1c] outline-none">
+                  <textarea name="" id="" rows="6" placeholder="Enter Your Message" 
+                   class="px-3 py-5 resize-none bg-ivorywhite border border-[#d4af37] outline-none text-charcolblack placeholder-[#1c1c1c]"></textarea>
+               </form>
+            </div>
+        
+        </div>
+        <div class="contact-right w-[50%] px-20  bg-charcolblack h-full flex justify-center">
+            <img src="/images/imgs/contact-logo.svg" alt="">
+        </div>
+       </div>
+      
+    </div>
+
+
+        <%- include('./partials/footer') %>
+
+</body>
+</html>

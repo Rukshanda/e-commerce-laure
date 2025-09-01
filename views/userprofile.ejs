@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head') %>
+  <body>
+    <%- include('./partials/header') %>
+
+    <div class="profile-page">
+      <div class="profile flex sm:flex-row flex-col lg:gap-20 gap-5">
+        <!-- ------ Sidebar -->
+        <div
+          class="side-bar sm:block hidden bg-charcolblack py-20 px-3 lg:w-[20%] md:w-[25%] flex h-screen text-ivorywhite"
+        >
+          <div class="flex flex-col gap-8 w-full px-2">
+            <div class="heading text-2xl poppins font-semibold">
+              <p>Your Details</p>
+            </div>
+            <div class="details flex flex-col gap-5">
+              <div class="bg-ivorywhite px-3 py-4 text-charcolblack w-full">
+                Username
+              </div>
+              <div class="bg-ivorywhite px-3 py-4 text-charcolblack w-full">
+                Email
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ----- Responsive Sidebar -->
+          <div
+          class="side-bar sm:hidden block w-full bg-charcolblack py-20 px-3 w-full   text-ivorywhite"
+        >
+          <div class="flex flex-col gap-8 w-full px-2">
+            <div class="heading text-2xl poppins font-semibold">
+              <p>Your Details</p>
+            </div>
+            <div class="details flex flex-col gap-5">
+              <div class="bg-ivorywhite px-3 py-4 text-charcolblack w-full">
+                Username
+              </div>
+              <div class="bg-ivorywhite px-3 py-4 text-charcolblack w-full">
+                Email
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ------------ Order History -->
+        <div class="order-history-container poppins py-20 lg:w-[50%] sm:w-[75%] w-[100%] sm:px-0 px-5">
+          <div class="order-history flex flex-col gap-8">
+            <div class="heading">
+              <p class="text-4xl font-bold poppins">Your Order History</p>
+            </div>
+            <div class="order-history-cards">
+              <div
+                class="card flex flex-row md:text-[18px] sm:text-[16px] text-[14px] font-medium items-center bg-ivorywhite border border-[#1c1c1c] sm:pr-5 pr-1"
+              >
+                <div class="w-[25%]">
+                  <div class="bg-golden md:w-[100px] md:h-[100px] w-[60px] h-[60px]">
+                    <img
+                      src="/images/product-imgs/img-1.svg"
+                      alt=""
+                      class="w-full  md:w-[100px] md:h-[100px] w-[60px] h-[60px]"
+                    />
+                  </div>
+                </div>
+
+                <span class="w-[25%]">Product Name</span>
+                <span class="w-[25%]">Product Number</span>
+                <span class="w-[25%]">Product ID</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+      <%- include('./partials/footer') %>
+
+</html>

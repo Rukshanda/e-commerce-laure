@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head') %>
+
+  <body>
+    <%- include('./partials/header') %>
+
+    <div
+      class="bg-[url('/images/imgs/signup-bg.svg')] bg-cover bg-center bg-no-repeat sm:min-h-screen w-full flex md:items-center mb-10"
+    >
+      <div class="w-full">
+        <div class="auth-forms lg:px-20 sm:px-10 px-2 py-10">
+          <div class="w-full">
+            <div class="signup-heading pb-8">
+              <p class="text-4xl poppins font-bold">Welcome To Lauré</p>
+            </div>
+
+            <div
+              class="flex md:flex-row flex-col md:gap-6 gap-2 items-center md:justify-center"
+            >
+              <!-- Signup Section -->
+              <div class="signup md:w-[50%] w-[100%] md:p-10 sm:p-5 p-3">
+                <div
+                  class="signup-form bg-charcolblack lg:py-20 lg:px-20 sm:py-10 sm:px-10 py-5 px-5 poppins flex flex-col gap-3 shadow-[0_4px_6px_rgba(212,175,55,0.4)] border-4 border-solid border-[#d4af37]"
+                >
+                  <p class="text-2xl font-semibold poppins text-ivorywhite">
+                    Sign Up
+                  </p>
+                  <form action="" class="flex flex-col gap-4 pt-2">
+                    <input
+                      type="text"
+                      placeholder="Enter Your Name"
+                      class="px-3 sm:py-5 py-4 border border-2 border-[#d4af37] placeholder-[#1c1c1c] outline-none bg-ivorywhite"
+                    />
+                    <input
+                      type="email"
+                      placeholder="Enter Your Email"
+                      class="px-3 sm:py-5 py-4 border border-2 border-[#d4af37] placeholder-[#1c1c1c] outline-none bg-ivorywhite"
+                    />
+                    <input
+                      type="password"
+                      placeholder="Enter Your Password"
+                      class="px-3 sm:py-5 py-4 border border-2 border-[#d4af37] placeholder-[#1c1c1c] outline-none bg-ivorywhite"
+                    />
+                  </form>
+                </div>
+              </div>
+
+              <!-- Divider (centered) -->
+              <div class="md:h-[400px] md:w-[2px] bg-[#d4af37]"></div>
+              <!-- Login Section -->
+              <div class="login md:w-[50%] w-[100%] md:p-10 sm:p-5 p-3">
+                <div
+                  class="login-container bg-charcolblack lg:py-20 lg:px-20 sm:py-10 sm:px-10 py-5 px-5 poppins flex flex-col gap-3 shadow-[0_4px_6px_rgba(212,175,55,0.4)] border-4 border-solid border-[#d4af37]"
+                >
+                  <p class="text-2xl font-semibold poppins text-ivorywhite">
+                    Login
+                  </p>
+                  <form action="" class="flex flex-col gap-4 pt-2">
+                    <input
+                      type="email"
+                      placeholder="Enter Your Email"
+                      class="px-3 sm:py-5 py-4 border border-2 border-[#d4af37] placeholder-[#1c1c1c] outline-none bg-ivorywhite"
+                    />
+                    <input
+                      type="password"
+                      placeholder="Enter Your Password"
+                      class="px-3 sm:py-5 py-4 border border-2 border-[#d4af37] placeholder-[#1c1c1c] outline-none bg-ivorywhite"
+                    />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('./partials/footer') %>
+  </body>
+</html>

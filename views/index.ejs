@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+        <%- include('./partials/head') %>
+
+  <body>
+    <%- include('./partials/header') %>
+
+    <div
+      class="hero-section relative sm:min-h-screen min-h-[75vh] flex items-center justify-center"
+    >
+      <div
+        class="absolute inset-0 bg-[url('/images/imgs/hero-bg.svg')] bg-cover bg-top"
+      ></div>
+      <div class="hero-section-heading relative z-10">
+        <p
+          class="uppercase poppins sm:text-2xl text-xl font-medium animate__animated animate__slideInLeft"
+        >
+          timeless in style
+        </p>
+        <h1
+          class="md:text-[100px] sm:text-[80px] text-[60px] flex flex-row sm:gap-5 gap-1 text-center text-charcol-black font-bold uppercase playfair tracking-[0.3em] animate__animated animate__slideInUp"
+        >
+          <span>l</span>
+          <span>a</span>
+          <span class=" ">u</span>
+          <span class=" ">r</span>
+          <span class="text-golden">é</span>
+        </h1>
+        <p
+          class="uppercase sm:text-2xl text-xl text-right font-medium animate__animated animate__slideInRight"
+        >
+          effortless in elegance
+        </p>
+      </div>
+    </div>
+    <%- include("partials/marquee") %>
+    <!-- ------ Cards -->
+    <div
+      class="category-card-section w-full flex flex-col justify-center items-center"
+    >
+      <div
+        class="cards p-5 md:p-10 w-full flex md:flex-row flex-col justify-between gap-8"
+      >
+        <!-- Card 1 -->
+        <div
+          class="card flex flex-col justify-center md:w-[45%] bg-charcolblack opacity-0 transition-opacity duration-300"
+          data-animate="backInLeft"
+        >
+          <div class="w-full relative">
+            <div class="flex justify-center items-center">
+              <img class="w-[400px]" src="/images/imgs/card-1-img.svg" alt="" />
+            </div>
+            <div class="pt-5 bg-ivorywhite flex flex-col gap-6">
+              <p
+                class="playfair md:text-[35px] sm:text-[30px] text-[25px] text-center font-semibold"
+              >
+                Women Work Blazers
+              </p>
+
+              <div
+                class="btn bg-golden py-[0.45rem] z-30 uppercase poppins text-xl tracking-wide font-semibold text-center w-full"
+              >
+                Shop Now
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div
+          class="card flex flex-col justify-center md:w-[45%] bg-charcolblack opacity-0 transition-opacity duration-300"
+          data-animate="backInLeft"
+        >
+          <div class="w-full relative">
+            <div class="flex justify-center items-center">
+              <img class="w-[473px]" src="/images/imgs/card-2-img.svg" alt="" />
+            </div>
+            <div class="pt-5 bg-ivorywhite flex flex-col gap-6">
+              <p
+                class="playfair md:text-[35px] sm:text-[30px] text-[25px] text-center font-semibold"
+              >
+                Women Summer Wears
+              </p>
+              <div
+                class="btn bg-golden py-[0.45rem] z-30 uppercase poppins text-xl tracking-wide font-semibold text-center w-full"
+              >
+                Shop Now
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ------- Testimonials -->
+    <div class="max-w-[1440px] mx-auto">
+      <div class="py-[80px]">
+        <div class="flex justify-center items-center pb-8">
+          <div class="heading bg-golden px-20 py-3 grow-rotate cursor-pointer">
+            <h2
+              class="uppercase font-semibold playfair md:text-3xl text-2xl text-center"
+            >
+              WHY lauré
+            </h2>
+          </div>
+        </div>
+
+        <!----- slider --- of testimonials -->
+
+        <div class="swiper mySwiper md:p-[50px] py-[20px]">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div
+                class="!py-8 !px-1 testimonial-card flex flex-col gap-3 border-2 border-[#d4af37] border-solid bg-ivorywhite text-charcolblack text-center"
+              >
+                <p class="uppercase playfair font-medium text-center text-2xl">
+                  lauré
+                </p>
+                <div class="rating flex justify-center items-center">
+                  <ul class="flex flex-row items-center gap-2">
+                    <li>
+                      <img src="/images/imgs/star-golden.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/images/imgs/star-golden.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/images/imgs/star-golden.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/images/imgs/star-golden.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/images/imgs/star.svg" alt="" />
+                    </li>
+                  </ul>
+                </div>
+                <p class="text-center poppins text-[18px]">
+                  Lauré has completely elevated my wardrobe — the pieces are
+                  timeless yet modern, and the quality is exceptional. I’ve
+                  never felt so effortlessly elegant.
+                </p>
+                <div
+                  class="user-info flex flex-row gap-6 items-center pl-[15px]"
+                >
+                  <div
+                    class="border-2 border-[#d4af37] border-solid w-[50px] h-[50px]"
+                  >
+                    <img src="/images/imgs/user-dp.svg" alt="" />
+                  </div>
+                  <p class="text-xl poppins font-semibold">- Amna R.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div
+                class="!py-8 !px-1 testimonial-card flex flex-col gap-3 border-2 border-[#d4af37] border-solid bg-ivorywhite text-charcolblack text-center"
+              >
+                <p class="uppercase playfair font-medium text-center text-2xl">
+                  lauré
+                </p>
+                <div class="rating flex justify-center items-center">
+                  <ul class="flex flex-row items-center gap-2">
+                    <li>
+                      <img src="/images/imgs/star-golden.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/images/imgs/star-golden.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/images/imgs/star-golden.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/images/imgs/star-golden.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/images/imgs/star.svg" alt="" />
+                    </li>
+                  </ul>
+                </div>
+                <p class="text-center poppins text-[18px]">
+                  Lauré has completely elevated my wardrobe — the pieces are
+                  timeless yet modern, and the quality is exceptional. I’ve
+                  never felt so effortlessly elegant.
+                </p>
+                <div
+                  class="user-info flex flex-row gap-6 items-center pl-[15px]"
+                >
+                  <div
+                    class="border-2 border-[#d4af37] border-solid w-[50px] h-[50px]"
+                  >
+                    <img src="/images/imgs/user-dp.svg" alt="" />
+                  </div>
+                  <p class="text-xl poppins font-semibold">- Amna R.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div
+                class="!py-8 !px-1 testimonial-card flex flex-col gap-3 border-2 border-[#d4af37] border-solid bg-ivorywhite text-charcolblack text-center"
+              >
+                <p class="uppercase playfair font-medium text-center text-2xl">
+                  lauré
+                </p>
+                <div class="rating flex justify-center items-center">
+                  <ul class="flex flex-row items-center gap-2">
+                    <li>
+                      <img src="/images/imgs/star-golden.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/images/imgs/star-golden.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/images/imgs/star-golden.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/images/imgs/star-golden.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/images/imgs/star.svg" alt="" />
+                    </li>
+                  </ul>
+                </div>
+                <p class="text-center poppins text-[18px]">
+                  Lauré has completely elevated my wardrobe — the pieces are
+                  timeless yet modern, and the quality is exceptional. I’ve
+                  never felt so effortlessly elegant.
+                </p>
+                <div
+                  class="user-info flex flex-row gap-6 items-center pl-[15px]"
+                >
+                  <div
+                    class="border-2 border-[#d4af37] border-solid w-[50px] h-[50px]"
+                  >
+                    <img src="/images/imgs/user-dp.svg" alt="" />
+                  </div>
+                  <p class="text-xl poppins font-semibold">- Amna R.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div
+                class="!py-8 !px-1 testimonial-card flex flex-col gap-3 border-2 border-[#d4af37] border-solid bg-ivorywhite text-charcolblack text-center"
+              >
+                <p class="uppercase playfair font-medium text-center text-2xl">
+                  lauré
+                </p>
+                <div class="rating flex justify-center items-center">
+                  <ul class="flex flex-row items-center gap-2">
+                    <li>
+                      <img src="/images/imgs/star-golden.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/images/imgs/star-golden.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/images/imgs/star-golden.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/images/imgs/star-golden.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/images/imgs/star.svg" alt="" />
+                    </li>
+                  </ul>
+                </div>
+                <p class="text-center poppins text-[18px]">
+                  Lauré has completely elevated my wardrobe — the pieces are
+                  timeless yet modern, and the quality is exceptional. I’ve
+                  never felt so effortlessly elegant.
+                </p>
+                <div
+                  class="user-info flex flex-row gap-6 items-center pl-[15px]"
+                >
+                  <div
+                    class="border-2 border-[#d4af37] border-solid w-[50px] h-[50px]"
+                  >
+                    <img src="/images/imgs/user-dp.svg" alt="" />
+                  </div>
+                  <p class="text-xl poppins font-semibold">- Amna R.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ----- Gallery Section -->
+    <div class="gallery relative max-w-[1600px] mx-auto">
+      <div class="w-full sm:p-8 p-[10px]">
+        <div
+          class="grid md:grid-cols-[1fr_2fr_1fr_1fr] sm:grid-cols-[1fr_2fr_1fr] grid-cols-[1fr_1fr] md:grid-rows-[1fr_1fr] sm:grid-rows-[1fr_1fr_1fr] grid-rows-[1fr_1fr_1fr_1fr] gap-2 sm:gap-5 p-2.5 sm:h-[130vh] h-[150vh]"
+        >
+          <!-- item 1 -->
+          <div
+            class="gallery-card opacity-0 bg-[url('/images/imgs/gallery-8.svg')] bg-cover bg-no-repeat bg-center col-start-1 row-start-2 border-2 border-[#d4af37]"
+          ></div>
+          <!-- item 1 -->
+          <div
+            class="gallery-card opacity-0 bg-[url('/images/imgs/gallery-1.svg')] bg-cover bg-no-repeat bg-center border-2 border-[#d4af37]"
+          ></div>
+
+          <!-- item 2 (span full height, middle column) -->
+          <div
+            class="gallery-card opacity-0 row-span-2 col-start-2 bg-[url('/images/imgs/gallery-2.svg')] bg-no-repeat bg-top border-2 border-[#d4af37]"
+          ></div>
+
+          <!-- item 3 -->
+          <div
+            class="gallery-card col-start-2 row-start-3 sm:col-start-3 sm:col-span-2 sm:row-start-1 md:col-start-3 md:col-span-1 md:row-start-1 opacity-0 bg-[url('/images/imgs/gallery-3.svg')] bg-no-repeat bg-top border-2 border-[#d4af37]"
+          ></div>
+
+          <!-- item 4 -->
+          <div
+            class="gallery-card sm:col-start-2 row-start-3 sm:col-start-3 sm:col-span-1 sm:row-start-2 md:col-start-4 md:col-span-1 md:row-start-1 opacity-0 bg-[url('/images/imgs/gallery-4.svg')] bg-no-repeat bg-center border-2 border-[#d4af37]"
+          ></div>
+
+          <!-- item 5 (under item 3) -->
+          <div
+            class="gallery-card opacity-0 col-span-1 row-start-4 col-start-2 sm:col-span-2 sm:row-start-3 md:col-start-3 md:col-span-1 md:row-start-2 bg-[url('/images/imgs/gallery-5.svg')] bg-cover bg-no-repeat bg-center border-2 border-[#d4af37]"
+          ></div>
+
+          <div
+            class="gallery-card opacity-0 bg-top md:col-start-4 col-start-1 md:row-start-2 sm:row-start-3 row-start-4 bg-[url('/images/imgs/gallery-6.svg')] bg-cover bg-no-repeat md:bg-center border-2 border-[#d4af37]"
+          ></div>
+        </div>
+        <!-- item 5 (under item 3) -->
+      </div>
+
+      <!-- heading -->
+
+      <div class="gallery-heading flex justify-center items-center">
+        <div class="absolute z-10 top-[45%]">
+          <div
+            class="uppercase md:text-[180px] sm:text-[150px] text-[60px] font-bold playfair flex flex-row sm:gap-[120px] text-ivorytransparent"
+          >
+            <span>L</span>
+            <span>a</span>
+            <span>u</span>
+            <span>r</span>
+            <span>é.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- --- Footer -->
+    <%- include("partials/footer") %>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="/javascripts/script.js"></script>
+  </body>
+</html>

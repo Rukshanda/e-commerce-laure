@@ -1,0 +1,267 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  overflow-x: hidden;
+  background-color: #faf9f7; /* Prevent horizontal scrollbar */
+}
+
+.ivory-white {
+  color: #faf9f7;
+}
+.charcol-black {
+  color: #1c1c1c;
+}
+.golden {
+  color: #d4af37;
+}
+.ivory-transparent {
+  color: #faf9f7cc;
+}
+
+body {
+  margin: 0;
+ }
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 15s linear infinite;
+}
+
+.review {
+  flex: none;
+  margin-right: 50px;
+  white-space: nowrap;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.poppins {
+  font-family: "Poppins", sans-serif;
+}
+.playfair {
+  font-family: "Playfair Display", serif;
+}
+.hero-section {
+  position: relative;
+  width: 100%;
+}
+
+.hero-section-heading p {
+  --animate-duration: 2s;
+}
+
+.hero-section-heading h1 {
+  --animate-duration: 1.5s;
+}
+
+.grow-rotate {
+  display: inline-block;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.grow-rotate:hover {
+  transform: scale(1.1) rotate(4deg);
+}
+
+ .swiper{
+    padding:10px;
+ }
+
+/* Target the default Swiper arrows */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+font-size: 18px;
+    color: #d4af37;
+    background-color: #1c1c1c;
+    padding: 10px 12px;
+      border: solid 1px #d4af37;
+
+}
+
+.swiper-pagination-bullet{
+  background-color: #1c1c1c !important;
+}
+ 
+ 
+ 
+
+  .shadow-custom {
+      box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+    }
+
+
+
+     .float {
+ 	display: inline-block;
+ 	transition-duration: .3s;
+ 	transition-property: transform;
+
+ 	-webkit-tap-highlight-color: rgba(0,0,0,0);
+ 	transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+
+
+
+}
+
+ 	.float:hover {
+ 		transform: translateY(-5px);
+ 	}
+
+
+
+
+ .grow {
+ 	display: inline-block;
+ 	transition-duration: .3s;
+ 	transition-property: transform;
+
+ 	-webkit-tap-highlight-color: rgba(0,0,0,0);
+ 	transform: translateZ(0);
+ 	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+
+ 
+ }
+
+ 	.grow:hover {
+ 		transform: scale(1.1);
+ 	}
+
+
+
+
+  .shrink {
+	display: inline-block;
+	transition-duration: .3s;
+	transition-property: transform;
+
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+
+		transform: translateZ(0);
+
+ box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+
+
+	
+}
+.shrink:hover {
+		transform: scale(.9);
+	}
+
+
+  .float {
+	display: inline-block;
+		transition-duration: .3s;
+	transition-property: transform;
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+
+		transform: translateZ(0);
+
+ box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+
+
+}
+
+	.float:hover {
+		transform: translateY(-5px);
+	}
+
+
+
+
+  .pulse-grow {
+	display: inline-block;
+
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+transform: translateZ(0);
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+
+}
+@keyframes pulse-grow {
+	to {
+		transform: scale(1.1);
+	}
+}
+
+
+	.pulse-grow:hover {
+		animation-name: pulse-grow;
+		animation-duration: .3s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		animation-direction: alternate;
+	}
+
+
+
+
+
+  /* ----------- scroll coloring */
+
+  /* For WebKit browsers (Chrome, Edge, Safari) */
+.order-sumary-cards {
+  max-height: 600px; /* set scroll area height */
+  overflow-y: auto;
+}
+
+
+/* Scrollbar styling */
+.order-sumary-cards::-webkit-scrollbar {
+  width: 10px;
+}
+
+.order-sumary-cards::-webkit-scrollbar-track {
+  background: #1c1c1c;  /* dark track */
+}
+
+.order-sumary-cards::-webkit-scrollbar-thumb {
+  background-color: #fffff0; /* ivory white thumb */
+  border-radius: 6px;
+  border: 2px solid #1c1c1c; /* blend nicely */
+}
+
+/* Firefox */
+.order-sumary-cards {
+  scrollbar-width: thin;
+  scrollbar-color: #fffff0 #1c1c1c;
+}
+
+
+
+
+
+
+
+
+
+ 
