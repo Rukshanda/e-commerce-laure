@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cpx \"routes/**/*\" netlify/functions/routes && cpx \"config/**/*\" netlify/functions/config && cpx \"views/**/*\" netlify/functions/views && cpx \"public/**/*\" netlify/functions/public"
+
   },
   "keywords": [],
   "author": "",
