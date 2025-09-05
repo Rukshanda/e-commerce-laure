@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head') %>
+
+  <body>
+    <%- include('./partials/header') %>
+
+    <!--  Flash Messages -->
+
+    <% if (typeof success !== "undefined" && success.length > 0) { %>
+    <div
+      id="flash-message"
+      class="absolute top-[5rem] left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[20%] text-center bg-green-600 text-white"
+    >
+      <span class="inline-block mt-1 mb-1"><%= success[0] %></span>
+    </div>
+    <% } %>
+
+    <div class="admin-container">
+      <div class="admin flex md:flex-row flex-col gap-5">
+        <!-- ------ Sidebar -->
+        <div
+          class="side-bar hidden md:block bg-charcolblack py-20 px-3 lg:w-[20%] md:w-[25%] h-screen text-ivorywhite"
+        >
+          <div class="flex flex-col gap-8 w-full px-2">
+            <div class="details flex flex-col gap-5">
+              <a href="/admin/addproduct" class="no-underline">
+                <div
+                  class="addproductbtn cursor-pointer bg-ivorywhite px-3 py-4 text-charcolblack w-full flex font-semibold text-[16px] justify-between"
+                >
+                  <span> Add Products </span>
+                  <img src="/images/imgs/add.svg" alt="" />
+                </div>
+              </a>
+
+              <a href="/admin/allproducts" class="no-underline">
+                <div
+                  class="allproductbtn cursor-pointer bg-ivorywhite px-3 py-4 text-charcolblack w-full flex font-semibold text-[16px] justify-between"
+                >
+                  <span> All Products </span>
+                  <img src="/images/imgs/all.svg" alt="" />
+                </div>
+              </a>
+
+          
+            </div>
+          </div>
+        </div>
+        <!-- ----- Responsive Sidebar -->
+        <div
+          class="side-bar md:hidden block w-full bg-charcolblack sm:py-20 py-5 sm:px-5 px-3 w-full text-ivorywhite"
+        >
+          <div class="details flex md:flex-col flex-row gap-5">
+            <a href="/admin/addproduct" class="no-underline">
+              <div
+                class="addproductbtn sm:bg-ivorywhite sm:px-3 sm:py-4 px-0 py-2 text-charcolblack w-full flex font-semibold text-[16px] sm:justify-between justify-center"
+              >
+                <span class="sm:block hidden cursor-pointer">
+                  Add Products
+                </span>
+                <img src="/images/imgs/add.svg" alt="" class="" />
+              </div>
+            </a>
+
+            <a href="/admin/allproducts" class="no-underline">
+              <div
+                class="allproductbtn sm:bg-ivorywhite sm:px-3 sm:py-4 px-0 py-2 text-charcolblack w-full flex font-semibold text-[16px] sm:justify-between justify-center"
+              >
+                <span class="sm:block hidden cursor-pointer">
+                  All Products
+                </span>
+                <img src="/images/imgs/all.svg" alt="" />
+              </div>
+            </a>
+
+            
+          </div>
+        </div>
+        <!-- ---- the dynamic part -->
+        <!-- -- Add Product -->
+      <div class="addproduct-container py-20 px-3 sm:w-[70%] w-full">
+  <div class="heading">
+    <p class="font-semibold poppins text-3xl">Create Products</p>
+  </div>
+
+  <!-- ✅ Single Form -->
+  <form
+    action="/admin/addproduct"
+    method="post"
+    enctype="multipart/form-data"
+    class="py-10 px-10  w-full "
+  > 
+  <!-- Product Image -->
+<div class="mb-8">
+  <p class="font-medium poppins text-xl pb-5">Product Image</p>
+
+  <!-- Custom Upload Button -->
+  <label
+    for="imageUpload"
+    class="cursor-pointer bg-golden text-white px-4 py-2 font-medium"
+  >
+    📂 Choose Image
+  </label>
+
+  <!-- Hidden Input -->
+  <input
+    type="file"
+    id="imageUpload"
+    name="image"
+    accept="image/*"
+    class="hidden"
+  />
+
+  <!-- File Name Display -->
+  <span id="fileName" class="text-sm text-gray-500 italic">
+    No file chosen
+  </span>
+</div>
+
+    <!-- Product Details -->
+    <div class="addprodcut-form">
+      <p class="font-medium poppins text-xl pb-5">Product Details</p>
+      <div class="w-full">
+        <div class="flex flex-wrap gap-4">
+          <input
+            type="text"
+            placeholder="Product Name"
+            name="name"
+            class="p-4 border border-[#d4af37] placeholder-[#1c1c1c] outline-none sm:w-[48%] w-full"
+          />
+          <input
+            type="number"
+            placeholder="Product Price"
+            name="price"
+            class="p-4 border border-[#d4af37] placeholder-[#1c1c1c] outline-none sm:w-[48%] w-full"
+          />
+          <input
+            type="text"
+            placeholder="Badge"
+            name="badge"
+            class="p-4 border border-[#d4af37] placeholder-[#1c1c1c] outline-none sm:w-[48%] w-full"
+          />
+          <input
+            type="text"
+            name="category"
+            placeholder="Category"
+            class="p-4 border border-[#d4af37] placeholder-[#1c1c1c] outline-none sm:w-[48%] w-full"
+          />
+          <input
+            type="number"
+            name="amount"
+            placeholder="Amount of Product"
+            class="p-4 border border-[#d4af37] placeholder-[#1c1c1c] outline-none sm:w-[48%] w-full"
+          />
+          <input
+            type="number"
+            name="discount"
+            placeholder="Discount"
+            class="p-4 border border-[#d4af37] placeholder-[#1c1c1c] outline-none sm:w-[48%] w-full"
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="p-4 border border-[#d4af37] text-[#faf9f7] font-semibold bg-[#d4af37] outline-none sm:w-[48%] w-full mt-5"
+        >
+          Add Product
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+      </div>
+    </div>
+    <%- include('./partials/footer') %>
+
+    <script src="/javascripts/script.js"></script>
+    <script>
+  document.getElementById("imageUpload").addEventListener("change", function () {
+    const fileName = this.files[0] ? this.files[0].name : "No file chosen";
+    document.getElementById("fileName").textContent = fileName;
+  });
+</script>
+
+  </body>
+</html>

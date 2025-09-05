@@ -13,11 +13,14 @@
                 <p class="text-4xl font-bold ">Contact Us</p>
              </div>
             <div class="contact-content">
-               <form action="" class="contact-form flex flex-col gap-4 w-[80%]">
-                  <input type="text" placeholder="Enter Your Name" class="bg-ivorywhite border border-[#d4af37] text-charcolblack px-3 py-5 placeholder-[#1c1c1c] outline-none">
-                  <input type="email" placeholder="Enter Your Email" class="bg-ivorywhite border border-[#d4af37] text-charcolblack px-3 py-5 placeholder-[#1c1c1c] outline-none">
-                  <textarea name="" id="" rows="6" placeholder="Enter Your Message" 
+               <form action="/contact" method="post" class="contact-form flex flex-col gap-4 w-[80%]">
+                  <input type="text" placeholder="Enter Your Name" name="name" class="bg-ivorywhite border border-[#d4af37] text-charcolblack px-3 py-5 placeholder-[#1c1c1c] outline-none">
+                  <input type="email" placeholder="Enter Your Email" name="email" class="bg-ivorywhite border border-[#d4af37] text-charcolblack px-3 py-5 placeholder-[#1c1c1c] outline-none">
+                  <textarea name="" id="" rows="6" name="msg" placeholder="Enter Your Message" 
                    class="px-3 py-5 resize-none bg-ivorywhite border border-[#d4af37] outline-none text-charcolblack placeholder-[#1c1c1c]"></textarea>
+                   <button type="submit" class="bg-[#d4af37] border border-[#d4af37] text-charcolblack px-3 py-2 font-bold placeholder-[#1c1c1c] outline-none">
+                     Send
+                   </button>
                </form>
             </div>
         

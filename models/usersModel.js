@@ -1,23 +1,64 @@
-// so there will be users right
-// what user model needs
-// name , email , psw , cart data and orders data , contact number , address
-
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-    name: String,
-    email: String,
-    psw: String,
-    cart: {
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  psw: {
+    type: String,
+    required: true,
+  },
+  cart: [
+    {
+      product: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "product"
+        ref: "product", 
+      },
+      quantity: {
+        type: Number,
+        default: 1,
+      },
     },
-    orders: {
-        type: Array,
-        default:[]
+  ],
+  orders: [
+    {
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "product",  
+      },
+      quantity: {
+        type: Number
+      },
     },
-    contact: Number,
-    address: String
-})
+  ],
+    placeOrders: [
+    {
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "product",
+      },
+      quantity: {
+        type: Number,
+        default: 1,
+      },
+      orderedAt: {
+        type: Date,
+        default: Date.now,  
+      },
+    },
+  ],
+  contact: {
+    type: Number,
+  },
+  address: {
+    type: String,
+  },
+});
 
-module.exports = mongoose.model("user" , userSchema)
+module.exports = mongoose.model("user", userSchema);

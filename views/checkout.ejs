@@ -39,24 +39,28 @@
               </p>
               <div class="flex flex-col gap-4 pl-4">
                 <div
-                  class="credit-btn p-4 flex justify-between items-center border border-[#d4af37]"
+                id="credit-btn"
+                  class="payment-option cursor-pointer credit-btn p-4 flex justify-between items-center border border-[#d4af37]"
                 >
                   <span>Credit Card</span>
                   <img src="/images/imgs/credit.svg" alt="" />
                 </div>
                 <div
-                  class="cash-btn p-4 flex justify-between items-center border border-[#d4af37]"
+                id="cash-btn"
+                  class="payment-option cursor-pointer cash-btn p-4 flex justify-between items-center border border-[#d4af37]"
                 >
                   <span>Cash on Delivery</span>
                   <img src="/images/imgs/money.svg" alt="" />
                 </div>
 
-                <div
-                  class="my-4 placeorder-btn p-4 flex justify-between items-center border border-[#1c1c1c] bg-golden text-ivorywhite font-bold text-xl"
-                >
-                  <span>Place Your Order</span>
-                  <img src="/images/imgs/placeorder.svg" alt="" />
-                </div>
+                <a href="placeorder" class="hover:text-inherit">
+                  <div
+                    class="my-4 placeorder-btn p-4 flex justify-between items-center border border-[#1c1c1c] bg-golden text-ivorywhite font-bold text-xl"
+                  >
+                    <span>Place Your Order</span>
+                    <img src="/images/imgs/placeorder.svg" alt="" />
+                  </div>
+                </a>
               </div>
             </div>
           </div>
@@ -72,70 +76,60 @@
           <div
             class="order-sumary-cards poppins text-ivorywhite xl:text-[18px] sm:text-[16px] text-[14px] flex gap-5 font-medium xl:w-[90%] w-full flex-col"
           >
+            <% if (orderItems.length > 0) { %> <% orderItems.forEach((item) => {
+            %>
             <div
               class="card p-4 border flex flex-row border-[#d4af37] w-full items-center gap-5 justify-between sm:justify-normal lg:gap-16 sm:gap-5"
             >
+              <!-- Product Image -->
               <div class="bg-golden sm:w-[80px] sm:h-[80px] w-[60px] h-[60px]">
                 <img
-                  src="/images/product-imgs/img-1.svg"
-                  alt=""
+                  src="data:image/jpeg;base64,<%= item.image.toString('base64') %>"
+                  alt="<%= item.name %>"
                   class="size-full"
                 />
               </div>
 
-              <span>Prdouct Name</span>
-              <span>Rs 2000</span>
-              <img
-                src="/images/imgs/cross.svg"
-                alt=""
-                class="sm:w-[25px] sm:h-[25px] w-[20px] h-[20px]"
-              />
-            </div>
+              <span><%= item.name %></span>
 
-            <div
-              class="card p-4 border flex flex-row border-[#d4af37] w-full items-center gap-5 justify-between sm:justify-normal lg:gap-16 sm:gap-5"
-            >
-              <div class="bg-golden sm:w-[80px] sm:h-[80px] w-[60px] h-[60px]">
+              <span> Rs <%= item.total %> </span>
+
+              <span>Qty: <%= item.quantity %></span>
+
+              <!-- Remove Button -->
+              <a href="/orders/remove/<%= item.id %>">
                 <img
-                  src="/images/product-imgs/img-1.svg"
-                  alt=""
-                  class="size-full"
+                  src="/images/imgs/cross.svg"
+                  alt="Remove"
+                  class="sm:w-[25px] sm:h-[25px] w-[20px] h-[20px]"
                 />
-              </div>
-
-              <span>Prdouct Name</span>
-              <span>Rs 2000</span>
-              <img
-                src="/images/imgs/cross.svg"
-                alt=""
-                class="sm:w-[25px] sm:h-[25px] w-[20px] h-[20px]"
-              />
+              </a>
             </div>
-
-            <div
-              class="card p-4 border flex flex-row border-[#d4af37] w-full items-center gap-5 justify-between sm:justify-normal lg:gap-16 sm:gap-5"
-            >
-              <div class="bg-golden sm:w-[80px] sm:h-[80px] w-[60px] h-[60px]">
-                <img
-                  src="/images/product-imgs/img-1.svg"
-                  alt=""
-                  class="size-full"
-                />
-              </div>
-
-              <span>Prdouct Name</span>
-              <span>Rs 2000</span>
-              <img
-                src="/images/imgs/cross.svg"
-                alt=""
-                class="sm:w-[25px] sm:h-[25px] w-[20px] h-[20px]"
-              />
-            </div>
+            <% }); %> <% } else { %>
+            <p class="text-red-500 font-bold">No items in checkout.</p>
+            <% } %>
           </div>
         </div>
       </div>
     </div>
 
     <%- include('./partials/footer') %>
+    <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const paymentOptions = document.querySelectorAll(".payment-option");
+
+    paymentOptions.forEach(option => {
+      option.addEventListener("click", () => {
+        // Remove golden background from all options
+        paymentOptions.forEach(opt => {
+          opt.classList.remove("bg-golden-card", "text-ivorywhite-card");
+        });
+
+        // Add golden background to the clicked option
+        option.classList.add("bg-golden-card", "text-ivorywhite-card");
+      });
+    });
+  });
+</script>
   </body>
 </html>

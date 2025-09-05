@@ -25,10 +25,26 @@ body {
   color: #faf9f7cc;
 }
 
+.bg-golden-card {
+  background-color: #d4af37;
+  border: 1px solid #1c1c1c !important;  
+}
+.text-ivorywhite-card {
+  color: #fff;
+}
+
+
 body {
   margin: 0;
  }
 
+ a {
+  text-decoration: none; 
+  color: inherit; 
+  all: unset;  
+  cursor: pointer; 
+  display: inline;
+}
 .marquee {
   position: relative;
   overflow: hidden;
@@ -261,7 +277,11 @@ transform: translateZ(0);
 
 
 
+.icon-wrapper .icon {
+  color: #1c1c1c; /* Default dark color */
+  transition: color 0.3s ease;
+}
 
-
-
- 
+.icon-wrapper:hover .icon {
+  color: #d4af37; /* Golden color on hover */
+}

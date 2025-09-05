@@ -5,63 +5,73 @@
   <body>
     <%- include('./partials/header') %>
 
+
+<% if (error && error.length > 0) { %>
+  <div
+    id="flash-message"
+  class="absolute top-[5rem] left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[20%] text-center bg-[#d4af37] text-white"
+>
+    <%= error %>
+  </div>
+<% } %>
+
+<% if (success && success.length > 0) { %>
+  <div 
+    id="flash-message"
+  class="absolute top-[5rem] left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[20%] text-center bg-[#d4af37] text-white"
+>
+    <%= success %>
+  </div>
+<% } %>
+
+
     <div
       class="bg-[url('/images/imgs/signup-bg.svg')] bg-cover bg-center bg-no-repeat sm:min-h-screen w-full flex md:items-center mb-10"
     >
       <div class="w-full">
         <div class="auth-forms lg:px-20 sm:px-10 px-2 py-10">
           <div class="w-full">
-            <div class="signup-heading pb-8">
-              <p class="text-4xl poppins font-bold">Welcome To Lauré</p>
-            </div>
+ 
 
-            <div class="flex justify-center">
+            <div
+              class="flex justify-center"
+            >
+             
               <!-- Signup Section -->
-              <div class="signup lg:w-[50%] w-[100%] md:p-10 sm:p-5 p-3">
+              <div class="signup md:w-[50%] w-[100%] md:p-10 sm:p-5 p-3">
+                <div class="signup-heading pb-8">
+              <p class="text-4xl poppins font-bold">Admin Login</p>
+            </div>
                 <div
                   class="signup-form bg-charcolblack lg:py-20 lg:px-20 sm:py-10 sm:px-10 py-5 px-5 poppins flex flex-col gap-3 shadow-[0_4px_6px_rgba(212,175,55,0.4)] border-4 border-solid border-[#d4af37]"
                 >
                   <p class="text-2xl font-semibold poppins text-ivorywhite">
-                    Sign Up
+                    Login
                   </p>
-                  <form
-                    action="/users/register"
-                    method="post"
-                    class="flex flex-col gap-4 pt-2"
-                  >
-                    <input
-                      type="text"
-                      placeholder="Enter Your Name"
-                      name="name"
-                      class="px-3 sm:py-5 py-4 border border-2 border-[#d4af37] placeholder-[#1c1c1c] outline-none bg-ivorywhite"
-                    />
+                  <form action="/admin/create" method="post" class="flex flex-col gap-4 pt-2">
+                   
                     <input
                       type="email"
-                      name="email"
                       placeholder="Enter Your Email"
+                      name="email"
+                      required
                       class="px-3 sm:py-5 py-4 border border-2 border-[#d4af37] placeholder-[#1c1c1c] outline-none bg-ivorywhite"
                     />
                     <input
                       type="password"
                       name="psw"
                       placeholder="Enter Your Password"
+                      required
                       class="px-3 sm:py-5 py-4 border border-2 border-[#d4af37] placeholder-[#1c1c1c] outline-none bg-ivorywhite"
                     />
-                    <button
-                      type="submit"
-                      class="px-3 py-2 border border-2 border-[#d4af37] text-center font-bold w-full text-ivorywhite outline-none bg-[#d4af37]"
-                    >
-                      Signup
-                    </button>
-                    <span  class="text-center"
-                      > <span class="text-ivorywhite font-bold poppins text-center">
-OR
-                      </span> 
-                      <a href="/users/login" class="pl-1 underline hover:text-[#d4af37] text-[#faf9f7]"> Login </a>
-                    </span>
+                      <button type="submit"
+                       class="px-3 sm:py-2 border border-2 border-[#d4af37] text-ivorywhite poppins font-bold text-xl outline-none bg-[#d4af37] ">
+                         Login
+                      </button>
                   </form>
                 </div>
               </div>
+ 
             </div>
           </div>
         </div>
@@ -69,5 +79,7 @@ OR
     </div>
 
     <%- include('./partials/footer') %>
+
+    <script src="/javascripts/script.js"></script>
   </body>
 </html>

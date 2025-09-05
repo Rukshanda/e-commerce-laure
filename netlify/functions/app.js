@@ -1,22 +1,24 @@
+const serverless = require("serverless-http");
 const express = require("express");
-const app = express();
-const cookieParser = require("cookie-parser");
 const path = require("path");
-const adminRouter = require("./routes/adminRouter");
-const indexRouter = require("./routes/indexRouter");
-const userRouter = require("./routes/userRouter");
-const contactRouter = require("./routes/contactRouter")
+const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
 const flash = require("connect-flash");
 const jwt = require("jsonwebtoken");
-
 require("dotenv").config();
 
-app.use(cookieParser());
-const connectDB = require("./config/db");
-
+const connectDB = require("../../config/db");
 connectDB();
 
+const adminRouter = require("../../routes/adminRouter");
+const indexRouter = require("../../routes/indexRouter");
+const userRouter = require("../../routes/userRouter");
+const contactRouter = require("../../routes/contactRouter");
+
+const app = express();
+
+// Middleware
+app.use(cookieParser());
 app.use(
   expressSession({
     resave: false,
@@ -24,18 +26,18 @@ app.use(
     secret: process.env.EXPRESS_SESSION_SECRET,
   })
 );
-
 app.use(flash());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-app.use(express.static(path.join(__dirname, "public")));
+// Views
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "../../views"));
 
+// Static files
+app.use(express.static(path.join(__dirname, "../../public")));
 
-
-
+// JWT middleware
 app.use((req, res, next) => {
   const token = req.cookies.token;
   if (!token) {
@@ -51,9 +53,11 @@ app.use((req, res, next) => {
   next();
 });
 
+// Routes
 app.use("/admin", adminRouter);
 app.use("/users", userRouter);
 app.use("/", indexRouter);
 app.use("/contact", contactRouter);
 
-app.listen(3000);
+// Export for Netlify
+module.exports.handler = serverless(app);

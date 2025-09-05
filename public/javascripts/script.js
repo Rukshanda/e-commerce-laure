@@ -1,6 +1,18 @@
 
 
 
+
+   setTimeout(() => {
+    const flash = document.getElementById("flash-message");
+    if (flash) {
+      flash.style.transition = "opacity 0.5s ease";
+      flash.style.opacity = "0";
+
+      setTimeout(() => flash.remove(), 500);  }
+  
+  }, 2000); 
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".card");
 
@@ -108,5 +120,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   galleryCards.forEach((card) => observer.observe(card));
 });
-
 

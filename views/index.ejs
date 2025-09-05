@@ -1,9 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-        <%- include('./partials/head') %>
+  <%- include('./partials/head') %>
 
   <body>
-    <%- include('./partials/header') %>
+    <%- include('./partials/header') %> <% if (success.length > 0) { %>
+    <div
+      id="flash-message"
+      class="absolute top-[5rem] left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[20%] text-center bg-green-500 text-white"
+    >
+      <% success.forEach(msg => { %>
+      <p><%= msg %></p>
+      <% }) %>
+    </div>
+    <% } %> <% if (error.length > 0) { %>
+    <div
+      id="flash-message"
+      class="absolute top-[5rem] left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[20%] text-center bg-red-500 text-white"
+    >
+      <% error.forEach(msg => { %>
+      <p><%= msg %></p>
+      <% }) %>
+    </div>
+    <% } %>
 
     <div
       class="hero-section relative sm:min-h-screen min-h-[75vh] flex items-center justify-center"
@@ -56,12 +74,13 @@
               >
                 Women Work Blazers
               </p>
-
-              <div
-                class="btn bg-golden py-[0.45rem] z-30 uppercase poppins text-xl tracking-wide font-semibold text-center w-full"
-              >
-                Shop Now
-              </div>
+              <a href="./products" class="hover:text-inherit hover:bg-inherit">
+                <div
+                  class="btn bg-golden py-[0.45rem] z-30 uppercase poppins text-xl tracking-wide font-semibold text-center w-full"
+                >
+                  Shop Now
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -81,11 +100,13 @@
               >
                 Women Summer Wears
               </p>
-              <div
-                class="btn bg-golden py-[0.45rem] z-30 uppercase poppins text-xl tracking-wide font-semibold text-center w-full"
-              >
-                Shop Now
-              </div>
+             <a href="./products" class="hover:text-inherit hover:bg-inherit">
+                <div
+                  class="btn bg-golden py-[0.45rem] z-30 uppercase poppins text-xl tracking-wide font-semibold text-center w-full"
+                >
+                  Shop Now
+                </div>
+              </a>
             </div>
           </div>
         </div>

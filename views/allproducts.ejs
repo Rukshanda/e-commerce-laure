@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head') %>
+
+  <body>
+    <%- include('./partials/header') %> <% if (error && error.length > 0) { %>
+    <div
+      id="flash-message"
+      class="absolute top-[5rem] left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[20%] text-center bg-red-500 text-white"
+    >
+      <%= error %>
+    </div>
+    <% } %> <% if (success && success.length > 0) { %>
+    <div
+      id="flash-message"
+      class="absolute top-[5rem] left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[20%] text-center bg-[#d4af37] text-white"
+    >
+      <%= success %>
+    </div>
+    <% } %>
+
+    <div class="admin-container">
+      <div class="admin flex md:flex-row flex-col gap-5">
+        <!-- ------ Sidebar -->
+        <div
+          class="side-bar hidden md:block bg-charcolblack py-20 px-3 lg:w-[20%] md:w-[25%] h-screen text-ivorywhite"
+        >
+          <div class="flex flex-col gap-8 w-full px-2">
+            <div class="details flex flex-col gap-5">
+              <a href="/admin/addproduct" class="no-underline">
+                <div
+                  class="addproductbtn cursor-pointer bg-ivorywhite px-3 py-4 text-charcolblack w-full flex font-semibold text-[16px] justify-between"
+                >
+                  <span> Add Products </span>
+                  <img src="/images/imgs/add.svg" alt="" />
+                </div>
+              </a>
+
+              <a href="/admin/allproducts" class="no-underline">
+                <div
+                  class="allproductbtn cursor-pointer bg-ivorywhite px-3 py-4 text-charcolblack w-full flex font-semibold text-[16px] justify-between"
+                >
+                  <span> All Products </span>
+                  <img src="/images/imgs/all.svg" alt="" />
+                </div>
+              </a>
+ 
+            </div>
+          </div>
+        </div>
+        <!-- ----- Responsive Sidebar -->
+        <div
+          class="side-bar md:hidden block w-full bg-charcolblack sm:py-20 py-5 sm:px-5 px-3 w-full text-ivorywhite"
+        >
+          <div class="details flex md:flex-col flex-row gap-5">
+            <a href="/admin/addproduct" class="no-underline">
+              <div
+                class="addproductbtn sm:bg-ivorywhite sm:px-3 sm:py-4 px-0 py-2 text-charcolblack w-full flex font-semibold text-[16px] sm:justify-between justify-center"
+              >
+                <span class="sm:block hidden cursor-pointer">
+                  Add Products
+                </span>
+                <img src="/images/imgs/add.svg" alt="" class="" />
+              </div>
+            </a>
+
+            <a href="/admin/allproducts" class="no-underline">
+              <div
+                class="allproductbtn sm:bg-ivorywhite sm:px-3 sm:py-4 px-0 py-2 text-charcolblack w-full flex font-semibold text-[16px] sm:justify-between justify-center"
+              >
+                <span class="sm:block hidden cursor-pointer">
+                  All Products
+                </span>
+                <img src="/images/imgs/all.svg" alt="" />
+              </div>
+            </a>
+ 
+          </div>
+        </div>
+
+        <!-- ---- the dynamic part -->
+
+        <!-- --- All Products -->
+
+        <div class="allproducts-container pt-20 px-3 md:w-[75%] w-full">
+          <div class="flex justify-center">
+            <div class="w-full">
+              <div class="heading">
+                <p class="text-4xl font-bold poppins">All Products</p>
+              </div>
+              <div
+                class="w-full flex justify-center sm:justify-normal items-center"
+              >
+                <div
+                  class="allproducts w-full sm:grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:h-[600px] overflow-y-auto px-4 py-10 gap-[10px]"
+                >
+                  <% if (products.length > 0) { %> 
+                    <% products.forEach(function(product){ %>
+                  <!-- ------------ -->
+                  <div
+                    class="product relative mb-5 float xl:w-[200px] md:w-[150px] w-full"
+                  >
+                    <div class="product-card">
+                      <div
+                        class="flex justify-center border-2 border-solid border-[#d4af37]"
+                      >
+                        <img
+                          src="data:image/jpeg;base64,<%= product.image.toString('base64') %>"
+                          class="xl:h-[250px] md:h-[230px] h-[250px] w-full"
+                          alt=""
+                        />
+                      </div>
+                      <div
+                        class="product-detail poppins flex justify-between items-center bg-charcolblack text-ivorywhite p-5"
+                      >
+                        <div class="text-detail">
+                          <p class="name sm:text-[18px] text-[16px]">
+                            <%= product.name %>
+                          </p>
+                          <div class="price sm:text-[18px] text-[16px]">
+                          Rs <%= product.price %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <% }) %> <% } else { %>
+                  <div class="w-full text-center py-10">
+                    <p class="text-xl font-semibold text-gray-500">
+                      No products available
+                    </p>
+                  </div>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('./partials/footer') %>
+
+    <script src="/javascripts/script.js"></script>
+  </body>
+</html>

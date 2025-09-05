@@ -5,124 +5,99 @@
   <body>
     <%- include('./partials/header') %>
 
+    
+
+    <% if (success.length > 0) { %>
+  <div     id="flash-message" class="absolute top-[5rem] left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[20%] text-center bg-green-500 text-white">
+    <% success.forEach(msg => { %>
+      <p><%= msg %></p>
+    <% }) %>
+  </div>
+<% } %>
+
+<% if (error.length > 0) { %>
+  <div    id="flash-message" class="absolute top-[5rem] left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[20%] text-center bg-red-500 text-white">
+    <% error.forEach(msg => { %>
+      <p><%= msg %></p>
+    <% }) %>
+  </div>
+<% } %>
+
     <div class="productdetail-container max-w-auto">
       <div class="productdetail sm:px-20 px-2 py-10 poppins">
         <div class="heading poppins text-4xl font-semibold">
           Product Details
         </div>
 
-        <div class="productdetail-cards py-10 md:px-10 px-5 flex flex-col gap-8">
-            <!-- ------ productdetail-1 -->
-          <div class="productdetail-card lg:w-[800px] md:w-[600px] max-w-auto m flex md:flex-row flex-col border border-[#d4af37]">
-            <div class="product-img lg:w-[300px] md:w-[200px] flex justify-center">
-              <img src="/images/product-imgs/img-1.svg" alt="" />
+        <div
+          class="productdetail-cards py-10 md:px-10 px-5 flex flex-col gap-8"
+        >
+          <!-- ------ productdetail-1 -->
+          <% user.cart.forEach((item)=> { %>
+
+          <div
+            class="productdetail-card lg:w-[800px] md:w-[600px] max-w-auto m flex md:flex-row flex-col border border-[#d4af37]"
+          >
+            <div
+              class="product-img lg:w-[300px] md:w-[200px] flex justify-center"
+            >
+              <img
+                src="data:image/jpeg;base64,<%= item.product.image.toString('base64') %>"
+                alt=""
+              />
             </div>
             <div
               class="productdetails-content lg:w-[500px] md:w-[400px] w-[100%] bg-charcolblack flex flex-col gap-4 justify-between md:py-10 md:px-10 py-5 px-5"
             >
               <div class="content text-ivorywhite flex gap-4 w-full">
-                <div class="content text-ivorywhite flex sm:flex-row flex-col gap-4 w-full sm:pb-0 pb-3">
+                <div
+                  class="content text-ivorywhite flex sm:flex-row flex-col gap-4 w-full sm:pb-0 pb-3"
+                >
                   <!-- only right border here -->
                   <div
-                    class="content-1 lg:text-[18px] sm:text-[16px] flex flex-col gap-1  sm:border-r border-ivorywhite sm:p-[10px] p-[5px]"
+                    class="content-1 lg:text-[16px] sm:text-[16px] flex flex-col gap-1 sm:border-r border-ivorywhite sm:p-[10px] p-[5px]"
                   >
-                    <span>Brown Blazer</span>
-                    <span>Category: Blazer</span>
-                    <span>Price: Rs 3000</span>
+                    <span><%= item.product.name %></span>
+                    <span>Category: <%= item.product.category %> </span>
+                    <span>Price: Rs <%= item.product.price %> </span>
                   </div>
 
-                  <span class="border border-ivorywhite sm:hidden block w-full"></span>
+                  <span
+                    class="border border-ivorywhite sm:hidden block w-full"
+                  ></span>
 
                   <!-- no border here -->
                   <div
-                    class="content-2 lg:text-[18px] sm:text-[16px] flex flex-col gap-1 sm:p-[10px] p-[5px]"
+                    class="content-2 lg:text-[16px] sm:text-[16px] flex flex-col gap-1 sm:p-[10px] p-[5px]"
                   >
-                    <span>Tax: Rs 1000</span>
-                    <span>Total: Rs 4000</span>
+                    <span>Discount: Rs <%= item.product.discount %> </span>
+                    <span
+                      >Total: Rs <%= item.quantity * (item.product.price -
+                      item.product.discount) %></span
+                    >
                   </div>
                 </div>
               </div>
-              <div class="cta flex flex-col gap-5 md:px-7 px-3">
+              <div class="cta md:px-5 px-3">
                 <div
-                  class="inc-dec-cont flex flex-row gap-3 items-center text-ivorywhite"
+                  class="addtocart-btn flex justify-between cursor-pointer items-center bg-golden text-charcolblack p-2"
                 >
-                  <span>
-                    <img src="/images/imgs/inc.svg" alt="" />
+                  <span class="lg:text-[18px] sm:text-[16px] font-semibold">
+                    <a href="/addToCart/<%= item.product._id %>" class="hover:text-inherit">
+                      Add To Cart
+                    </a>
                   </span>
-                  <span> 01 </span>
-                  <span>
-                    <img src="/images/imgs/dec.svg" alt="" />
-                  </span>
-                </div>
-                <div
-                  class="addtocart-btn flex justify-between items-center bg-golden text-charcolblack p-2"
-                >
-                  <span class="lg:text-[18px] sm:text-[16px] font-semibold">Add To Cart</span>
-                  <span
-                    ><img src="/images/imgs/cart.svg" alt=""
-                  /></span>
+                  <span><img src="/images/imgs/cart.svg" alt="" /></span>
                 </div>
               </div>
             </div>
           </div>
-                 <!-- ------ productdetail-2 -->
-          <div class="productdetail-card lg:w-[800px] md:w-[600px] max-w-auto m flex md:flex-row flex-col border border-[#d4af37]">
-            <div class="product-img lg:w-[300px] md:w-[200px] flex justify-center">
-              <img src="/images/product-imgs/img-2.svg" alt="" />
-            </div>
-            <div
-              class="productdetails-content lg:w-[500px] md:w-[400px] w-[100%] bg-charcolblack flex flex-col gap-4 justify-between md:py-10 md:px-10 py-5 px-5"
-            >
-              <div class="content text-ivorywhite flex gap-4 w-full">
-                <div class="content text-ivorywhite flex sm:flex-row flex-col gap-4 w-full sm:pb-0 pb-3">
-                  <!-- only right border here -->
-                  <div
-                    class="content-1 lg:text-[18px] sm:text-[16px] flex flex-col gap-1  sm:border-r border-ivorywhite sm:p-[10px] p-[5px]"
-                  >
-                    <span>Brown Blazer</span>
-                    <span>Category: Blazer</span>
-                    <span>Price: Rs 3000</span>
-                  </div>
 
-                  <span class="border border-ivorywhite sm:hidden block w-full"></span>
-
-                  <!-- no border here -->
-                  <div
-                    class="content-2 lg:text-[18px] sm:text-[16px] flex flex-col gap-1 sm:p-[10px] p-[5px]"
-                  >
-                    <span>Tax: Rs 1000</span>
-                    <span>Total: Rs 4000</span>
-                  </div>
-                </div>
-              </div>
-              <div class="cta flex flex-col gap-5 md:px-7 px-3">
-                <div
-                  class="inc-dec-cont flex flex-row gap-3 items-center text-ivorywhite"
-                >
-                  <span>
-                    <img src="/images/imgs/inc.svg" alt="" />
-                  </span>
-                  <span> 01 </span>
-                  <span>
-                    <img src="/images/imgs/dec.svg" alt="" />
-                  </span>
-                </div>
-                <div
-                  class="addtocart-btn flex justify-between items-center bg-golden text-charcolblack p-2"
-                >
-                  <span class="lg:text-[18px] sm:text-[16px] font-semibold">Add To Cart</span>
-                  <span
-                    ><img src="/images/imgs/cart.svg" alt=""
-                  /></span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <%})%>
         </div>
       </div>
     </div>
 
-        <%- include('./partials/footer') %>
-
+    <%- include('./partials/footer') %>
   </body>
 </html>

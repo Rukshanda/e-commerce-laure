@@ -1,39 +1,85 @@
- 
-    <div class="header">
-<%- include('./marquee') %>
-      <div
-        class="mx-auto nav flex flex-row gap-5 justify-between py-1  sm:px-20 px-2  items-center border-b border-[#1c1c1c]"
-      >
-        <div class="logo">
-          <img src="/images/imgs/logo.svg" class="sm:w-[125px] sm:h-[73px] w-[115px] h-[63px]"  />
-        </div>
-        <div class="nav-icons">
-          <ul class="flex sm:gap-5 gap-3 items-center">
-            <li>
-              <img
-                src="/images/imgs/search-icon.svg"
-                class="sm:w-[24px] sm:h-[24px] w-[20px] h-[20px]"
-                alt=""
-              />
-            </li>
-            <li>
-              <img
-                src="/images/imgs/cart-icon.svg"
-              class="sm:w-[24px] sm:h-[24px] w-[20px] h-[20px]"
-                alt=""
-              />
-            </li>
-            <li>
-              <img
-                src="/images/imgs/uesr-icon.svg"
-           class="sm:w-[24px] sm:h-[24px] w-[20px] h-[20px]"
-                alt=""
-              />
-            </li>
-          </ul>
-        </div>
-      </div>
+<div class="header">
+  <%- include('./marquee') %>
+  <div
+    class="mx-auto nav flex flex-row gap-5 justify-between py-1 sm:px-20 px-2 items-center border-b border-[#1c1c1c]"
+  >
+    <div class="logo">
+      <a href="/">
+        <img
+          src="/images/imgs/logo.svg"
+          class="sm:w-[125px] sm:h-[73px] w-[115px] h-[63px]"
+        />
+      </a>
     </div>
-
-
- 
+    <div class="nav-icons">
+      <ul class="flex sm:gap-5 gap-3 items-center">
+        <li class="icon-wrapper">
+          <a href="/products">
+            <svg
+            class="icon"
+              width="22"
+              height="20"
+              viewBox="0 0 22 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0.222426 6.65625L2.51949 1.58036C2.96029 0.611607 3.85404 0 4.83676 0H17.1673C18.146 0 19.0438 0.611607 19.4805 1.58036L21.7776 6.65625C21.9232 6.97768 22 7.33036 22 7.69196C22 8.91071 21.1426 9.91071 20.0588 9.99554V18.5714C20.0588 19.3616 19.4805 20 18.7647 20C18.0489 20 17.4706 19.3616 17.4706 18.5714V10H13.5882V17.8571C13.5882 19.0402 12.7188 20 11.6471 20H3.88235C2.81066 20 1.94118 19.0402 1.94118 17.8571V9.99554C0.857353 9.91071 0 8.91071 0 7.69196C0 7.33482 0.0768382 6.97768 0.222426 6.65625ZM4.52941 10V15C4.52941 15.3929 4.82059 15.7143 5.17647 15.7143H10.3529C10.7088 15.7143 11 15.3929 11 15V10H4.52941Z"
+                 fill="currentColor"
+              />
+            </svg>
+          </a>
+        </li>
+        <li class="icon-wrapper">
+          <a href="/cart">
+            <svg
+            class="icon"
+              width="25"
+              height="25"
+              viewBox="0 0 25 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.92857 5.46875C8.92857 3.74512 10.5301 2.34375 12.5 2.34375C14.4699 2.34375 16.0714 3.74512 16.0714 5.46875V7.8125H8.92857V5.46875ZM6.25 7.8125H2.67857C1.19978 7.8125 0 8.8623 0 10.1562V20.3125C0 22.9004 2.39955 25 5.35714 25H19.6429C22.6004 25 25 22.9004 25 20.3125V10.1562C25 8.8623 23.8002 7.8125 22.3214 7.8125H18.75V5.46875C18.75 2.44629 15.9542 0 12.5 0C9.04576 0 6.25 2.44629 6.25 5.46875V7.8125ZM7.58929 10.1562C8.33147 10.1562 8.92857 10.6787 8.92857 11.3281C8.92857 11.9775 8.33147 12.5 7.58929 12.5C6.8471 12.5 6.25 11.9775 6.25 11.3281C6.25 10.6787 6.8471 10.1562 7.58929 10.1562ZM16.0714 11.3281C16.0714 10.6787 16.6685 10.1562 17.4107 10.1562C18.1529 10.1562 18.75 10.6787 18.75 11.3281C18.75 11.9775 18.1529 12.5 17.4107 12.5C16.6685 12.5 16.0714 11.9775 16.0714 11.3281Z"
+                 fill="currentColor"
+              />
+            </svg>
+          </a>
+        </li>
+        <li class="icon-wrapper">
+          <a href="/profile">
+            <svg
+            class="icon"
+              width="20"
+              height="25"
+              viewBox="0 0 20 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 11.9048C13.1875 11.9048 15.7692 9.24107 15.7692 5.95238C15.7692 2.66369 13.1875 0 10 0C6.8125 0 4.23077 2.66369 4.23077 5.95238C4.23077 9.24107 6.8125 11.9048 10 11.9048ZM8.57211 14.6825C3.83654 14.6825 0 18.6409 0 23.5268C0 24.3403 0.639423 25 1.42788 25H18.5721C19.3606 25 20 24.3403 20 23.5268C20 18.6409 16.1635 14.6825 11.4279 14.6825H8.57211Z"
+                 fill="currentColor"
+              />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <% if (loggedin) { %>
+          <a
+            href="/users/logout"
+            class="no-underline font-semibold text-[16px] focus:outline-none hover:text-[#d4af37]"
+            >Logout</a
+          >
+          <% } else { %>
+          <a
+            href="/users/register"
+            class="no-underline font-semibold text-[16px] focus:outline-none hover:text-[#d4af37]"
+            >Signup</a
+          >
+          <% } %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

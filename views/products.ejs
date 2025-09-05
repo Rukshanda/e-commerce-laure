@@ -1,340 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-        <%- include('./partials/head') %>
+  <%- include('./partials/head') %>
 
-<body>
-     <%- include('./partials/header') %>
+  <body>
+    <%- include('./partials/header') %>
 
-
-
-     <!-- ---- products -nav -->
-  <div class="dropdown-container ">
-    <div class="flex gap-5 sm:px-20 bg-charcolblack py-4 text-ivorywhite my-4">
-
-   
-  <div class="ui dropdown">
-    <div class="text text-[16px] font-bold poppins">Sort By</div>
-    <i class="dropdown icon text-golden"></i>
-    <div class="menu !rounded-[0px] !bg-ivorywhite !text-charcolblack">
-      <div class="item !text-[16px]">Popular</div>
-       <div class="item !text-[16px]">Newest</div>
-  
+    <!-- ---- products -nav -->
+    <div class="dropdown-container">
+      <div
+        class="flex gap-5 sm:px-20 bg-charcolblack py-4 text-ivorywhite my-4"
+      >
+        <div class="ui dropdown">
+          <div class="text text-[16px] font-bold poppins">Sort By</div>
+          <i class="dropdown icon text-golden"></i>
+          <div class="menu !rounded-[0px] !bg-ivorywhite !text-charcolblack">
+            <div class="item !text-[16px] text-[#1c1c1c]">
+              <a href="/products?badge=Popular" class="hover:bg-transparent hover:text-[#1c1c1c]">
+                Popular
+              </a>
+            </div>
+            <div class="item !text-[16px] text-[#1c1c1c]">
+              <a href="/products?badge=New" class="hover:bg-transparent hover:text-[#1c1c1c]">
+                New
+              </a>
+            </div>
+            <div class="item !text-[16px] text-[#1c1c1c]">
+              <a href="/products" class="hover:bg-transparent hover:text-[#1c1c1c]">Show All</a>
+            </div>
+          </div>
+        </div>
+        <div class="ui dropdown">
+          <div class="text text-[16px] font-bold poppins">Cateogry</div>
+          <i class="dropdown icon text-golden"></i>
+          <div class="menu !rounded-[0px] !bg-ivorywhite !text-charcolblack">
+            <div class="item !text-[16px] text-[#1c1c1c]">
+              <a href="/products?category=Blazer" class="hover:bg-transparent hover:text-[#1c1c1c]">
+                Blazer
+              </a>
+            </div>
+            <div class="item !text-[16px] text-[#1c1c1c]">
+              <a
+                href="/products?category=Summer Wears"
+                class="hover:bg-transparent hover:text-[#1c1c1c]"
+              >
+                Summer Wears
+              </a>
+            </div>
+             <div class="item !text-[16px] text-[#1c1c1c]">
+              <a href="/products" class="hover:bg-transparent hover:text-[#1c1c1c]">Show All</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-    <div class="ui dropdown">
-    <div class="text text-[16px] font-bold poppins">Cateogry</div>
-    <i class="dropdown icon text-golden"></i>
-    <div class="menu !rounded-[0px] !bg-ivorywhite !text-charcolblack">
-      <div class="item !text-[16px]">Blazer</div>
-       <div class="item !text-[16px]">Summer Wears</div>
-  
+
+    <!-- --- Products -->
+    <div class="products-container max-w-auto sm:px-20 py-20">
+      <div class="w-full">
+        <div
+          class="products flex flex-wrap gap-3 justify-center items-center w-full"
+        >
+          <% if (products.length > 0) { %> <%
+          products.forEach(function(product){ %>
+          <!-- ------------ -->
+          <div
+            class="product border-2 relative border-solid border-[#d4af37] w-[280px] mb-5 float"
+          >
+            <div class="product-card">
+              <div class="flex justify-center">
+                <img
+                  src="data:image/jpeg;base64,<%= product.image.toString('base64') %>"
+                  class="h-[345px]"
+                  alt="<%= product.name %>"
+                />
+              </div>
+              <div
+                class="product-detail poppins flex justify-between items-center bg-charcolblack text-ivorywhite p-5"
+              >
+                <div class="text-detail">
+                  <p class="name sm:text-[18px] text-[16px]">
+                    <%= product.name %>
+                  </p>
+                  <div class="price sm:text-[18px] text-[16px]">
+                    Rs <%= product.price %>
+                  </div>
+                </div>
+                <div class="addtocart-btn">
+                  <div class="bg-golden p-3 cursor-pointer">
+                    <a href="/addToCart/<%= product._id %>">
+                      <img src="/images/imgs/plus.svg" alt="add to cart" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="detail-button bg-golden text-ivorywhite font-semibold poppins text-[20px] text-center p-2"
+              >
+                <div class="">See Details</div>
+              </div>
+            </div>
+            <div
+              class="badge absolute bg-golden text-charcolblack px-4 py-1 poppins text-[15px] font-semibold top-[4%] left-[65%]"
+            >
+              <span><%= product.badge || "New" %></span>
+            </div>
+          </div>
+          <% }) %> <% } else { %>
+          <div class="w-full text-center py-10">
+            <p class="text-xl font-semibold text-gray-500">
+              No products available
+            </p>
+          </div>
+          <% } %>
+        </div>
+      </div>
     </div>
-  </div>
-   </div>
-  </div>
 
-  <!-- --- Products -->
-   <div class="products-container max-w-auto sm:px-20 py-20 ">
-    <div class="w-full">
-  <div class="products flex flex-wrap gap-3 justify-center items-center   w-full">
- 
-      <!-- ------------ -->
-        <div class="product border-2 relative border-solid border-[#d4af37] w-[280px] mb-5 float">
-          <div class="product-card">
-     <div class="flex justify-center">
-            <img src="/images/product-imgs/img-1.svg" class="h-[345px]" alt="">
-           </div>
-           <div class="product-detail poppins flex justify-between items-center bg-charcolblack text-ivorywhite p-5">
-            <div class="text-detail">
-        <p class="name sm:text-[18px] text-[16px]">Almond Shirt</p>
-              <div class="price sm:text-[18px] text-[16px]">Rs 3000</div>
-            </div>
-            <div class="addtocart-btn">
-               <div class="bg-golden p-3">
-                <img src="/images/imgs/plus.svg" alt="">
-               </div>
-            </div>
-      
-           </div>
-           <div class="detail-button bg-golden text-ivorywhite font-semibold poppins text-[20px] text-center p-2">
-             <div class="">See Details</div>
-           </div>
-          </div>
-          <div class="badge absolute bg-golden text-charcolblack px-4 py-1 poppins text-[15px] font-semibold top-[4%] left-[65%]">
-            <span>New</span>
-          </div>
-      
-        </div>
-          <!-- ------------ -->
-        <div class="product border-2 relative border-solid border-[#d4af37] w-[280px] mb-5 float">
-          <div class="product-card">
-     <div class="flex justify-center">
-            <img src="/images/product-imgs/img-2.svg" class="h-[345px]" alt="">
-           </div>
-           <div class="product-detail poppins flex justify-between items-center bg-charcolblack text-ivorywhite p-5">
-            <div class="text-detail">
-        <p class="name sm:text-[18px] text-[16px]">Almond Shirt</p>
-              <div class="price sm:text-[18px] text-[16px]">Rs 3000</div>
-            </div>
-            <div class="addtocart-btn">
-               <div class="bg-golden p-3">
-                <img src="/images/imgs/plus.svg" alt="">
-               </div>
-            </div>
-      
-           </div>
-           <div class="detail-button bg-golden text-ivorywhite font-semibold poppins text-[20px] text-center p-2">
-             <div class="">See Details</div>
-           </div>
-          </div>
-          <div class="badge absolute bg-golden text-charcolblack px-4 py-1 poppins text-[15px] font-semibold top-[4%] left-[65%]">
-            <span>Popular</span>
-          </div>
-      
-        </div>
-          <!-- ------------ -->
-        <div class="product border-2 relative border-solid border-[#d4af37] w-[280px] mb-5 float">
-          <div class="product-card">
-     <div class="flex justify-center">
-            <img src="/images/product-imgs/img-3.svg" class="h-[345px]" alt="">
-           </div>
-           <div class="product-detail poppins flex justify-between items-center bg-charcolblack text-ivorywhite p-5">
-            <div class="text-detail">
-        <p class="name sm:text-[18px] text-[16px]">Almond Shirt</p>
-              <div class="price sm:text-[18px] text-[16px]">Rs 3000</div>
-            </div>
-            <div class="addtocart-btn">
-               <div class="bg-golden p-3">
-                <img src="/images/imgs/plus.svg" alt="">
-               </div>
-            </div>
-      
-           </div>
-           <div class="detail-button bg-golden text-ivorywhite font-semibold poppins text-[20px] text-center p-2">
-             <div class="">See Details</div>
-           </div>
-          </div>
-          <div class="badge absolute bg-golden text-charcolblack px-4 py-1 poppins text-[15px] font-semibold top-[4%] left-[65%]">
-            <span>New</span>
-          </div>
-      
-        </div>
-          <!-- ------------ -->
-        <div class="product border-2 relative border-solid border-[#d4af37] w-[280px] mb-5 float">
-          <div class="product-card">
-     <div class="flex justify-center">
-            <img src="/images/product-imgs/img-4.svg" class="h-[345px]" alt="">
-           </div>
-           <div class="product-detail poppins flex justify-between items-center bg-charcolblack text-ivorywhite p-5">
-            <div class="text-detail">
-        <p class="name sm:text-[18px] text-[16px]">Almond Shirt</p>
-              <div class="price sm:text-[18px] text-[16px]">Rs 3000</div>
-            </div>
-            <div class="addtocart-btn">
-               <div class="bg-golden p-3">
-                <img src="/images/imgs/plus.svg" alt="">
-               </div>
-            </div>
-      
-           </div>
-           <div class="detail-button bg-golden text-ivorywhite font-semibold poppins text-[20px] text-center p-2">
-             <div class="">See Details</div>
-           </div>
-          </div>
-          <div class="badge absolute bg-golden text-charcolblack px-4 py-1 poppins text-[15px] font-semibold top-[4%] left-[65%]">
-            <span>New</span>
-          </div>
-      
-        </div>
-          <!-- ------------ -->
-        <div class="product border-2 relative border-solid border-[#d4af37] w-[280px] mb-5 float">
-          <div class="product-card">
-     <div class="flex justify-center">
-            <img src="/images/product-imgs/img-5.svg" class="h-[345px]" alt="">
-           </div>
-           <div class="product-detail poppins flex justify-between items-center bg-charcolblack text-ivorywhite p-5">
-            <div class="text-detail">
-        <p class="name sm:text-[18px] text-[16px]">Almond Shirt</p>
-              <div class="price sm:text-[18px] text-[16px]">Rs 3000</div>
-            </div>
-            <div class="addtocart-btn">
-               <div class="bg-golden p-3">
-                <img src="/images/imgs/plus.svg" alt="">
-               </div>
-            </div>
-      
-           </div>
-           <div class="detail-button bg-golden text-ivorywhite font-semibold poppins text-[20px] text-center p-2">
-             <div class="">See Details</div>
-           </div>
-          </div>
-          <div class="badge absolute bg-golden text-charcolblack px-4 py-1 poppins text-[15px] font-semibold top-[4%] left-[65%]">
-            <span>New</span>
-          </div>
-      
-        </div>
-          <!-- ------------ -->
-        <div class="product border-2 relative border-solid border-[#d4af37] w-[280px] mb-5 float">
-          <div class="product-card">
-     <div class="flex justify-center">
-            <img src="/images/product-imgs/img-10.svg" class="h-[345px]" alt="">
-           </div>
-           <div class="product-detail poppins flex justify-between items-center bg-charcolblack text-ivorywhite p-5">
-            <div class="text-detail">
-        <p class="name sm:text-[18px] text-[16px]">Almond Shirt</p>
-              <div class="price sm:text-[18px] text-[16px]">Rs 3000</div>
-            </div>
-            <div class="addtocart-btn">
-               <div class="bg-golden p-3">
-                <img src="/images/imgs/plus.svg" alt="">
-               </div>
-            </div>
-      
-           </div>
-           <div class="detail-button bg-golden text-ivorywhite font-semibold poppins text-[20px] text-center p-2">
-             <div class="">See Details</div>
-           </div>
-          </div>
-          <div class="badge absolute bg-golden text-charcolblack px-4 py-1 poppins text-[15px] font-semibold top-[4%] left-[65%]">
-            <span>New</span>
-          </div>
-      
-        </div>
-          <!-- ------------ -->
-        <div class="product border-2 relative border-solid border-[#d4af37] w-[280px] mb-5 float">
-          <div class="product-card">
-     <div class="flex justify-center">
-            <img src="/images/product-imgs/img-6.svg" class="h-[345px]" alt="">
-           </div>
-           <div class="product-detail poppins flex justify-between items-center bg-charcolblack text-ivorywhite p-5">
-            <div class="text-detail">
-        <p class="name sm:text-[18px] text-[16px]">Almond Shirt</p>
-              <div class="price sm:text-[18px] text-[16px]">Rs 3000</div>
-            </div>
-            <div class="addtocart-btn">
-               <div class="bg-golden p-3">
-                <img src="/images/imgs/plus.svg" alt="">
-               </div>
-            </div>
-      
-           </div>
-           <div class="detail-button bg-golden text-ivorywhite font-semibold poppins text-[20px] text-center p-2">
-             <div class="">See Details</div>
-           </div>
-          </div>
-          <div class="badge absolute bg-golden text-charcolblack px-4 py-1 poppins text-[15px] font-semibold top-[4%] left-[65%]">
-            <span>New</span>
-          </div>
-      
-        </div>
-          <!-- ------------ -->
-        <div class="product border-2 relative border-solid border-[#d4af37] w-[280px] mb-5 float">
-          <div class="product-card">
-     <div class="flex justify-center">
-            <img src="/images/product-imgs/img-7.svg" class="h-[345px]" alt="">
-           </div>
-           <div class="product-detail poppins flex justify-between items-center bg-charcolblack text-ivorywhite p-5">
-            <div class="text-detail">
-        <p class="name sm:text-[18px] text-[16px]">Almond Shirt</p>
-              <div class="price sm:text-[18px] text-[16px]">Rs 3000</div>
-            </div>
-            <div class="addtocart-btn">
-               <div class="bg-golden p-3">
-                <img src="/images/imgs/plus.svg" alt="">
-               </div>
-            </div>
-      
-           </div>
-           <div class="detail-button bg-golden text-ivorywhite font-semibold poppins text-[20px] text-center p-2">
-             <div class="">See Details</div>
-           </div>
-          </div>
-          <div class="badge absolute bg-golden text-charcolblack px-4 py-1 poppins text-[15px] font-semibold top-[4%] left-[65%]">
-            <span>New</span>
-          </div>
-      
-        </div>
-            <!-- ------------ -->
-        <div class="product border-2 relative border-solid border-[#d4af37] w-[280px] mb-5 float">
-          <div class="product-card">
-     <div class="flex justify-center">
-            <img src="/images/product-imgs/img-8.svg" class="h-[345px]" alt="">
-           </div>
-           <div class="product-detail poppins flex justify-between items-center bg-charcolblack text-ivorywhite p-5">
-            <div class="text-detail">
-        <p class="name sm:text-[18px] text-[16px]">Almond Shirt</p>
-              <div class="price sm:text-[18px] text-[16px]">Rs 3000</div>
-            </div>
-            <div class="addtocart-btn">
-               <div class="bg-golden p-3">
-                <img src="/images/imgs/plus.svg" alt="">
-               </div>
-            </div>
-      
-           </div>
-           <div class="detail-button bg-golden text-ivorywhite font-semibold poppins text-[20px] text-center p-2">
-             <div class="">See Details</div>
-           </div>
-          </div>
-          <div class="badge absolute bg-golden text-charcolblack px-4 py-1 poppins text-[15px] font-semibold top-[4%] left-[65%]">
-            <span>New</span>
-          </div>
-      
-        </div>
-          <!-- ------------ -->
-        <div class="product border-2 relative border-solid border-[#d4af37] w-[280px] mb-5 float">
-          <div class="product-card">
-     <div class="flex justify-center">
-            <img src="/images/product-imgs/img-9.svg" class="h-[345px]" alt="">
-           </div>
-           <div class="product-detail poppins flex justify-between items-center bg-charcolblack text-ivorywhite p-5">
-            <div class="text-detail">
-        <p class="name sm:text-[18px] text-[16px]">Almond Shirt</p>
-              <div class="price sm:text-[18px] text-[16px]">Rs 3000</div>
-            </div>
-            <div class="addtocart-btn">
-               <div class="bg-golden p-3">
-                <img src="/images/imgs/plus.svg" alt="">
-               </div>
-            </div>
-      
-           </div>
-           <div class="detail-button bg-golden text-ivorywhite font-semibold poppins text-[20px] text-center p-2">
-             <div class="">See Details</div>
-           </div>
-          </div>
-          <div class="badge absolute bg-golden text-charcolblack px-4 py-1 poppins text-[15px] font-semibold top-[4%] left-[65%]">
-            <span>New</span>
-          </div>
-      
-        </div>
-
-
-
-
-     </div>
-     </div>
-    </div>
-   
-    
-   
-     <%- include('./partials/footer') %>
-
-
-
-
-
-
+    <%- include('./partials/footer') %>
 
     <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <!-- Semantic JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- Semantic JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
 
-  <script>
-    $(document).ready(function() {
-      $('.ui.dropdown').dropdown();
-    });
-  </script>
-</body>
+    <script>
+      $(document).ready(function () {
+        $(".ui.dropdown").dropdown();
+      });
+    </script>
+  </body>
 </html>
