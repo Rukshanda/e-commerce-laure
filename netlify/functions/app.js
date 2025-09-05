@@ -1,24 +1,29 @@
-const serverless = require("serverless-http");
-const express = require("express");
 const path = require("path");
+const express = require("express");
+const serverless = require("serverless-http");
 const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
 const flash = require("connect-flash");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-const connectDB = require("../../config/db");
-connectDB();
-
+// Routers
 const adminRouter = require("../../routes/adminRouter");
 const indexRouter = require("../../routes/indexRouter");
 const userRouter = require("../../routes/userRouter");
 const contactRouter = require("../../routes/contactRouter");
 
+// DB connection
+const connectDB = require("../../config/db");
+connectDB();
+
 const app = express();
 
 // Middleware
 app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(
   expressSession({
     resave: false,
@@ -27,17 +32,15 @@ app.use(
   })
 );
 app.use(flash());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-// Views
+// ✅ FIXED: Correct paths for Netlify
+const rootPath = path.join(__dirname, "../../");
+
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "../../views"));
+app.set("views", path.join(rootPath, "views"));
+app.use(express.static(path.join(rootPath, "public")));
 
-// Static files
-app.use(express.static(path.join(__dirname, "../../public")));
-
-// JWT middleware
+// JWT check
 app.use((req, res, next) => {
   const token = req.cookies.token;
   if (!token) {
@@ -56,8 +59,8 @@ app.use((req, res, next) => {
 // Routes
 app.use("/admin", adminRouter);
 app.use("/users", userRouter);
-app.use("/", indexRouter);
 app.use("/contact", contactRouter);
+app.use("/", indexRouter);
 
-// Export for Netlify
+// Default handler for Netlify
 module.exports.handler = serverless(app);

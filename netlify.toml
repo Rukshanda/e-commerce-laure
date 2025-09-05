@@ -1,7 +1,12 @@
 [build]
-  publish = "public"
-  functions = "netlify/functions"
+  command = "npm install"
+  publish = "public"            # This is your static assets folder
+  functions = "netlify/functions"  # Where your serverless functions are stored
 
 [functions]
-  node_bundler = "esbuild"
-  included_files = ["views/**", "public/**"]
+  node_bundler = "esbuild"      # Helps Netlify bundle dependencies like ejs properly
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/app"
+  status = 200
