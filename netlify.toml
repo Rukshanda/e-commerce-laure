@@ -2,6 +2,9 @@
   functions = "netlify/functions"
   publish = "public"
 
+[functions]
+  node_bundler = "esbuild" # Ensures proper packaging of dependencies like ejs
+
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/app/:splat"
