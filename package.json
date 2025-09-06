@@ -30,7 +30,6 @@
     "tailwindcss": "^4.1.12"
   },
   "devDependencies": {
-    "cpx": "^1.2.1",
     "esbuild": "^0.25.9"
   }
 }
