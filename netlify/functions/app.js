@@ -3,17 +3,17 @@ const serverless = require("serverless-http"); // <-- Added
 const app = express();
 const cookieParser = require("cookie-parser");
 const path = require("path");
-const adminRouter = require("./routes/adminRouter");
-const indexRouter = require("./routes/indexRouter");
-const userRouter = require("./routes/userRouter");
-const contactRouter = require("./routes/contactRouter");
+const adminRouter = require("../../routes/adminRouter");
+const indexRouter = require("../../routes/routes/indexRouter");
+const userRouter = require("../../routes/routes/userRouter");
+const contactRouter = require("../../routes/routes/contactRouter");
 const expressSession = require("express-session");
 const flash = require("connect-flash");
 const jwt = require("jsonwebtoken");
 
 require("dotenv").config();
 
-const connectDB = require("./config/db");
+const connectDB = require("../../config/db");
 connectDB();
 
 app.use(cookieParser());
@@ -31,8 +31,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Static files
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "../../public")));
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "../../views"));
 
 // Middleware for checking JWT
 app.use((req, res, next) => {
