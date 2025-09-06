@@ -1,6 +1,4 @@
 const express = require("express");
-const session = require('express-session');
-const MongoStore = require('connect-mongo');
 const app = express();
 const cookieParser = require("cookie-parser");
 const path = require("path");
@@ -8,7 +6,8 @@ const adminRouter = require("./routes/adminRouter");
 const indexRouter = require("./routes/indexRouter");
 const userRouter = require("./routes/userRouter");
 const contactRouter = require("./routes/contactRouter")
- const flash = require("connect-flash");
+const expressSession = require("express-session");
+const flash = require("connect-flash");
 const jwt = require("jsonwebtoken");
 
 require("dotenv").config();
@@ -18,15 +17,16 @@ const connectDB = require("./config/db");
 
 connectDB();
 
+app.use(
+  expressSession({
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.EXPRESS_SESSION_SECRET,
+  })
+);
 
 
 
-app.use(session({
-  secret: 'your-secret',
-  resave: false,
-  saveUninitialized: true,
-  store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
-}));
 
 app.use(flash());
 app.use(express.json());
