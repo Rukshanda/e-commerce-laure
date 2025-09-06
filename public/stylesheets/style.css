@@ -108,10 +108,15 @@ body {
 .grow-rotate:hover {
   transform: scale(1.1) rotate(4deg);
 }
+.swiper {
+   padding: 50px; /* default for small screens */
+}
 
- .swiper{
-    padding:10px;
- }
+@media (min-width: 640px) {
+   .swiper {
+      padding: 10px; /* overrides for screens >= 640px */
+   }
+}
 
 /* Target the default Swiper arrows */
 .swiper-button-next::after,
@@ -284,4 +289,11 @@ transform: translateZ(0);
 
 .icon-wrapper:hover .icon {
   color: #d4af37; /* Golden color on hover */
+}
+
+@media (max-width:640px) {
+  .icon{
+  width: 18px;
+  height: 18px;
+}
 }
