@@ -15,17 +15,27 @@
           <i class="dropdown icon text-golden"></i>
           <div class="menu !rounded-[0px] !bg-ivorywhite !text-charcolblack">
             <div class="item !text-[16px] text-[#1c1c1c]">
-              <a href="/products?badge=Popular" class="hover:bg-transparent hover:text-[#1c1c1c]">
+              <a
+                href="/products?badge=Popular"
+                class="hover:bg-transparent hover:text-[#1c1c1c]"
+              >
                 Popular
               </a>
             </div>
             <div class="item !text-[16px] text-[#1c1c1c]">
-              <a href="/products?badge=New" class="hover:bg-transparent hover:text-[#1c1c1c]">
+              <a
+                href="/products?badge=New"
+                class="hover:bg-transparent hover:text-[#1c1c1c]"
+              >
                 New
               </a>
             </div>
             <div class="item !text-[16px] text-[#1c1c1c]">
-              <a href="/products" class="hover:bg-transparent hover:text-[#1c1c1c]">Show All</a>
+              <a
+                href="/products"
+                class="hover:bg-transparent hover:text-[#1c1c1c]"
+                >Show All</a
+              >
             </div>
           </div>
         </div>
@@ -34,7 +44,10 @@
           <i class="dropdown icon text-golden"></i>
           <div class="menu !rounded-[0px] !bg-ivorywhite !text-charcolblack">
             <div class="item !text-[16px] text-[#1c1c1c]">
-              <a href="/products?category=Blazer" class="hover:bg-transparent hover:text-[#1c1c1c]">
+              <a
+                href="/products?category=Blazer"
+                class="hover:bg-transparent hover:text-[#1c1c1c]"
+              >
                 Blazer
               </a>
             </div>
@@ -46,8 +59,12 @@
                 Summer Wears
               </a>
             </div>
-             <div class="item !text-[16px] text-[#1c1c1c]">
-              <a href="/products" class="hover:bg-transparent hover:text-[#1c1c1c]">Show All</a>
+            <div class="item !text-[16px] text-[#1c1c1c]">
+              <a
+                href="/products"
+                class="hover:bg-transparent hover:text-[#1c1c1c]"
+                >Show All</a
+              >
             </div>
           </div>
         </div>
@@ -85,7 +102,9 @@
                     Rs <%= product.price %>
                   </div>
                 </div>
-                <div class="addtocart-btn sm:w-[35px] sm:h-[35px] w-[26px] h-[26px] ">
+                <div
+                  class="addtocart-btn sm:w-[35px] sm:h-[35px] w-[26px] h-[26px]"
+                >
                   <div class="bg-golden sm:p-3 p-2 cursor-pointer">
                     <a href="/addToCart/<%= product._id %>">
                       <img src="/images/imgs/plus.svg" alt="add to cart" />
@@ -93,11 +112,13 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="detail-button bg-golden text-charcolblack font-medium poppins sm:text-[18px] text-[16px] text-center p-2"
-              >
-                <div class="">See Details</div>
-              </div>
+              <a href="/productdetials">
+                <div
+                  class="detail-button bg-golden text-charcolblack font-medium poppins sm:text-[18px] text-[16px] text-center p-2"
+                >
+                  <div class="">See Details</div>
+                </div>
+              </a>
             </div>
             <div
               class="badge absolute bg-golden text-charcolblack px-4 py-1 poppins sm:text-[15px] text-[14px] font-semibold top-[4%] sm:left-[65%] left-[50%]"
