@@ -3,7 +3,7 @@
   publish = "public"
 
 [functions]
-  node_bundler = "esbuild" # Ensures proper packaging of dependencies like ejs
+  node_bundler = "esbuild"  
 
 [[redirects]]
   from = "/api/*"
