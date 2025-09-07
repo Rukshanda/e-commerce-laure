@@ -18,13 +18,26 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
   <!-- Tailwind Custom Theme -->
-  <style type="text/tailwindcss">
-    @theme {
-      --color-ivorywhite: #faf9f7;
-      --color-charcolblack: #1c1c1c;
-      --color-golden: #d4af37;
-      --color-ivorytransparent: #faf9f7cc;
-    }
-  </style>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ivorywhite: '#faf9f7',
+          charcolblack: '#1c1c1c',
+          golden: '#d4af37',
+          ivorytransparent: '#faf9f7cc',
+        },
+        screens: {
+          custom: '450px',  
+          custom2: '1050px',
+          custom3: '320px'
+        },
+      },
+    },
+  }
+</script>
+
+
 </head>
  

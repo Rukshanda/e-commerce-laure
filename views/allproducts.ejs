@@ -6,14 +6,14 @@
     <%- include('./partials/header') %> <% if (error && error.length > 0) { %>
     <div
       id="flash-message"
-      class="absolute top-[5rem] left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[20%] text-center bg-red-500 text-white"
+      class="absolute top-[5rem] left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 sm:w-[20%] text-center bg-red-500 text-white"
     >
       <%= error %>
     </div>
     <% } %> <% if (success && success.length > 0) { %>
     <div
       id="flash-message"
-      class="absolute top-[5rem] left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[20%] text-center bg-[#d4af37] text-white"
+      class="absolute top-[5rem] left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 sm:w-[20%] text-center bg-[#d4af37] text-white"
     >
       <%= success %>
     </div>

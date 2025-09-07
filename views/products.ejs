@@ -72,22 +72,22 @@
     </div>
 
     <!-- --- Products -->
-    <div class="products-container max-w-auto sm:px-20 py-20">
+    <div class="products-container max-w-auto sm:px-3 custom2:px-20  px-[5px] py-20">
       <div class="w-full">
         <div
-          class="products flex flex-wrap sm:gap-3 gap-2 justify-center items-center w-full"
+          class="products flex flex-wrap gap-2 custom:gap-3 items-center w-full"
         >
           <% if (products.length > 0) { %> <%
           products.forEach(function(product){ %>
           <!-- ------------ -->
           <div
-            class="product border-2 relative border-solid border-[#d4af37] sm:w-[280px] w-[180px] mb-5 float"
+            class="product border-2 relative border-solid border-[#d4af37]  mb-5 float custom3:w-[48%] custom:w-[48%] md:w-[32%] custom2:w-[28%]   xl:w-[24%] 2xl:w-[18%] "
           >
             <div class="product-card">
               <div class="flex justify-center">
                 <img
                   src="data:image/jpeg;base64,<%= product.image.toString('base64') %>"
-                  class="sm:h-[345px] h-[250px] sm:w-[280px]"
+                  class="w-[200px] h-[240px] custom:h-[345px] custom:w-[280px]"
                   alt="<%= product.name %>"
                 />
               </div>
@@ -95,17 +95,18 @@
                 class="product-detail poppins flex justify-between items-center bg-charcolblack text-ivorywhite p-5"
               >
                 <div class="text-detail">
-                  <p class="name sm:text-[18px] text-[14px]">
-                    <%= product.name %>
+                  <p class="name  text-[14px] custom:text-[18px]">
+                    <%= product.name.length > 7 ? product.name.substring(0, 7) + ".." : product.name %>
+
                   </p>
-                  <div class="price sm:text-[18px] text-[14px]">
+                  <div class="price  text-[14px] custom:text-[18px]">
                     Rs <%= product.price %>
                   </div>
                 </div>
                 <div
-                  class="addtocart-btn sm:w-[35px] sm:h-[35px] w-[26px] h-[26px]"
+                  class="addtocart-btn  w-[26px] h-[26px] custom:w-[35px] custom:h-[35px]"
                 >
-                  <div class="bg-golden sm:p-3 p-2 cursor-pointer">
+                  <div class="bg-golden p-2 custom:p-3  cursor-pointer">
                     <a href="/addToCart/<%= product._id %>">
                       <img src="/images/imgs/plus.svg" alt="add to cart" />
                     </a>
@@ -114,14 +115,14 @@
               </div>
               <a href="/productdetials">
                 <div
-                  class="detail-button bg-golden text-charcolblack font-medium poppins sm:text-[18px] text-[16px] text-center p-2"
+                  class="detail-button bg-golden text-charcolblack font-medium poppins [500px]:text-[18px] text-[16px] text-center p-2"
                 >
                   <div class="">See Details</div>
                 </div>
               </a>
             </div>
             <div
-              class="badge absolute bg-golden text-charcolblack px-4 py-1 poppins sm:text-[15px] text-[14px] font-semibold top-[4%] sm:left-[65%] left-[50%]"
+              class="badge absolute bg-golden text-charcolblack px-4 py-1 poppins [500px]:text-[15px] text-[14px] font-semibold top-[4%] sm:left-[65%] custom:left-[56%] left-[5%]"
             >
               <span><%= product.badge || "New" %></span>
             </div>
