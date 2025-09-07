@@ -81,14 +81,19 @@ router.get("/profile", isLoggedIn, async (req, res) => {
 
 
 // Product Details
-router.get("/productdetials", isLoggedIn, async (req, res) => {
-  let user = await usersModel
-    .findOne({ email: req.user.email })
-    .populate("cart.product");
-  console.log(user);
-  res.render("productdetail", { user });
+router.get("/productdetials/:id", isLoggedIn, async (req, res) => {
+  try {
+    let product = await productsModel.findById(req.params.id);
+    if (!product) {
+      return res.status(404).send("Product not found");
+    }
+    console.log(product);
+    res.render("productdetail", { product });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
 });
-
 // Checkout
 router.get("/checkout", isLoggedIn, async (req, res) => {
   try {
