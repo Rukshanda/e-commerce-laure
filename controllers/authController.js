@@ -74,6 +74,6 @@ module.exports.loginUser = async (req, res) => {
 // ==================== LOGOUT USER ====================
 module.exports.logout = (req, res) => {
   res.clearCookie("token");
-  req.flash("success", "Logged out successfully");
-  res.redirect("/");
+  req.flash("loginSuccess", "Logged out successfully");
+  res.redirect("/users/login");
 };

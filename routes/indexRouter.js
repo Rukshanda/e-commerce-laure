@@ -21,8 +21,7 @@ router.get("/", (req, res) => {
   });
 });
 
-// Contact Us 
-
+// Contact Us
 
 //for logout
 router.get("/logout", (req, res) => {
@@ -40,10 +39,16 @@ router.get("/products", async (req, res) => {
 
     const products = await productsModel.find(filter);
 
-    res.render("products", { products });
+    // ✅ Pass success and error flash messages to the view
+    res.render("products", {
+      products,
+      success: req.flash("success"), // for success messages
+      error: req.flash("error"), // for error messages
+    });
   } catch (err) {
     console.error("Error fetching products:", err);
-    res.status(500).send("Server error");
+    req.flash("error", "Failed to fetch products");
+    res.redirect("/products"); // Redirect with error message
   }
 });
 
@@ -77,9 +82,6 @@ router.get("/profile", isLoggedIn, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
- 
-
-
 
 // Product Details
 router.get("/productdetials/:id", isLoggedIn, async (req, res) => {
@@ -103,34 +105,46 @@ router.get("/checkout", isLoggedIn, async (req, res) => {
       .populate("orders.product"); // populate orders
 
     if (!user) {
-      return res.status(404).send("User not found");
+      req.flash("error", "User not found");
+      return res.redirect("/cart");
     }
 
     // Clean formatted orders
     const orderItems = user.orders
-      .filter(order => order.product) // only valid products
-      .map(order => ({
+      .filter((order) => order.product) // only valid products
+      .map((order) => ({
         id: order.product._id,
         name: order.product.name,
         image: order.product.image,
         price: order.product.price,
         discount: order.product.discount || 0,
         quantity: order.quantity,
-        total: order.quantity * ((order.product.price || 0) - (order.product.discount || 0))
+        total:
+          order.quantity *
+          ((order.product.price || 0) - (order.product.discount || 0)),
       }));
 
-    res.render("checkout", { user, orderItems });
+    // ✅ Pass flash messages to checkout view
+    res.render("checkout", {
+      user,
+      orderItems,
+      success: req.flash("success"),
+      error: req.flash("error"),
+    });
   } catch (err) {
     console.error(err);
-    res.status(500).send("Server error");
+    req.flash("error", "Something went wrong while loading checkout.");
+    res.redirect("/cart");
   }
 });
 
-// TO checkout all the products here is the functionality 
- 
+// TO checkout all the products here is the functionality
+
 router.get("/checkout-all", isLoggedIn, async (req, res) => {
   try {
-    const user = await usersModel.findOne({ email: req.user.email }).populate("cart.product");
+    const user = await usersModel
+      .findOne({ email: req.user.email })
+      .populate("cart.product");
 
     if (!user) {
       req.flash("error", "User not found");
@@ -143,10 +157,10 @@ router.get("/checkout-all", isLoggedIn, async (req, res) => {
     }
 
     // Push all cart items into orders
-    user.cart.forEach(item => {
+    user.cart.forEach((item) => {
       user.orders.push({
         product: item.product._id,
-        quantity: item.quantity
+        quantity: item.quantity,
       });
     });
 
@@ -163,7 +177,6 @@ router.get("/checkout-all", isLoggedIn, async (req, res) => {
     res.redirect("/cart");
   }
 });
-
 
 //addToCart functionality
 router.get("/addToCart/:id", isLoggedIn, async (req, res) => {
@@ -223,7 +236,9 @@ router.get("/ordernow/:id", isLoggedIn, async (req, res) => {
     }
 
     // 3️⃣ Find the product quantity in cart
-    const cartItem = user.cart.find(item => item.product.toString() === productId);
+    const cartItem = user.cart.find(
+      (item) => item.product.toString() === productId
+    );
     const quantity = cartItem ? cartItem.quantity : 1;
 
     // 4️⃣ Push the product into orders array
@@ -233,12 +248,16 @@ router.get("/ordernow/:id", isLoggedIn, async (req, res) => {
     });
 
     // 5️⃣ Remove the product from the cart
-    user.cart = user.cart.filter(item => item.product.toString() !== productId);
+    user.cart = user.cart.filter(
+      (item) => item.product.toString() !== productId
+    );
 
     // 6️⃣ Save the updated user
     await user.save();
 
-    console.log(`Product "${product.name}" moved to orders and removed from cart`);
+    console.log(
+      `Product "${product.name}" moved to orders and removed from cart`
+    );
     req.flash("success", "Ordered successfully");
     res.redirect("/checkout");
   } catch (err) {
@@ -247,8 +266,6 @@ router.get("/ordernow/:id", isLoggedIn, async (req, res) => {
     res.redirect("/");
   }
 });
-
-
 
 // Delete Functionality
 
@@ -287,7 +304,6 @@ router.get("/orders/remove/:productId", isLoggedIn, async (req, res) => {
     res.status(500).send("Server error");
   }
 });
-
 
 // INcrement Functionality
 router.get("/cart/inc/:id", isLoggedIn, async (req, res) => {
@@ -359,25 +375,46 @@ router.get("/cart/dec/:id", isLoggedIn, async (req, res) => {
   }
 });
 
-
 // Place Your Order Functionality
-router.get("/placeorder", isLoggedIn, async (req, res) => {
+// Place Your Order Functionality
+router.post("/placeorder", isLoggedIn, async (req, res) => {
   try {
-    const user = await usersModel.findOne({ email: req.user.email }).populate("orders.product");
+    const { email, contact, address, paymentMethod } = req.body;
+
+    // ✅ Check if logged-in user exists
+    const user = await usersModel
+      .findOne({ email: req.user.email })
+      .populate("orders.product");
 
     if (!user) {
       req.flash("error", "User not found");
-      return res.redirect("/");
+      return res.redirect("/checkout");
     }
 
-    // ✅ Check before moving anything
+    // ✅ Validate email matches logged-in user
+    if (email !== req.user.email) {
+      req.flash("error", "The email you entered does not match your account");
+      return res.redirect("/checkout");
+    }
+
+    // ✅ Validate phone and address
+    if (!contact || !address) {
+      req.flash("error", "Phone and Address are required to place the order");
+      return res.redirect("/checkout");
+    }
+
+    // ✅ Update user's contact and address
+    user.contact = contact;
+    user.address = address;
+
+    // ✅ Check if there are orders to place
     if (user.orders.length === 0) {
       req.flash("error", "You have no active orders to place");
-      return res.redirect("/cart"); // Only triggers if user had 0 orders *before placing*
+      return res.redirect("/cart");
     }
 
     // ✅ Move current orders to placed orders
-    user.orders.forEach(orderItem => {
+    user.orders.forEach((orderItem) => {
       user.placeOrders.push({
         product: orderItem.product._id,
         quantity: orderItem.quantity,
@@ -385,21 +422,18 @@ router.get("/placeorder", isLoggedIn, async (req, res) => {
       });
     });
 
-    // ✅ Clear active orders
+    // ✅ Clear active orders after placing them
     user.orders = [];
 
     await user.save();
 
     req.flash("success", "Your order has been placed successfully!");
-
-    // ✅ Redirect to profile, NOT checkout
     return res.redirect("/profile");
   } catch (err) {
     console.error("Error placing your order:", err);
     req.flash("error", "Something went wrong while placing the order");
-    return res.redirect("/cart");
+    return res.redirect("/checkout");
   }
 });
-
 
 module.exports = router;

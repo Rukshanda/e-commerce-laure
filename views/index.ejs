@@ -3,10 +3,11 @@
   <%- include('./partials/head') %>
 
   <body>
-    <%- include('./partials/header') %> <% if (success.length > 0) { %>
+    <%- include('./partials/header') %> 
+    <% if (success.length > 0) { %>
     <div
-      id="flash-message"
-      class="absolute top-[8rem] sm:top-[5rem] left-[90%] sm:left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[80%] sm:w-[20%]text-center bg-green-500 text-white"
+      
+      class="flash-message absolute top-[8rem] sm:top-[5rem] left-[90%] sm:left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[80%] sm:w-[20%] text-center bg-green-500 text-white"
     >
       <% success.forEach(msg => { %>
       <p><%= msg %></p>
@@ -14,8 +15,8 @@
     </div>
     <% } %> <% if (error.length > 0) { %>
     <div
-      id="flash-message"
-      class="absolute top-[8rem] sm:top-[5rem] left-[90%] sm:left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[80%] sm:w-[20%]text-center bg-red-500 text-white"
+      
+      class="flash-message absolute top-[8rem] sm:top-[5rem] left-[90%] sm:left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[80%] sm:w-[20%] text-center bg-red-500 text-white"
     >
       <% error.forEach(msg => { %>
       <p><%= msg %></p>
@@ -27,7 +28,7 @@
       class="hero-section relative sm:min-h-screen min-h-[75vh] flex items-center justify-center"
     >
       <div
-        class="absolute inset-0 bg-[url('/images/imgs/hero-bg.svg')] bg-cover bg-top"
+        class="absolute inset-0 bg-[url('/images/imgs/hero_bg.jpg')] bg-cover bg-top"
       ></div>
       <div class="hero-section-heading relative z-10">
         <p

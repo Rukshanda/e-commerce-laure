@@ -4,13 +4,31 @@
 
   <body>
     <%- include('./partials/header') %> <% if (error && error.length > 0) { %>
-  <div
-    id="flash-message"
-    class="absolute top-[8rem] sm:top-[5rem] left-[90%] sm:left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[80%] sm:w-[20%] text-center bg-red-500 text-white"
-  >
-    <%= error[0] %>
-  </div>
-<% } %>
+    <div
+      
+      class="flash-message absolute top-[8rem] sm:top-[5rem] left-[90%] sm:left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[80%] sm:w-[20%] text-center bg-red-500 text-white"
+    >
+      <%= error[0] %>
+    </div>
+    <% } %> <% if (success && success.length > 0) { %>
+    <div
+      
+      class="flash-message absolute top-[8rem] sm:top-[5rem] left-[90%] sm:left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[80%] sm:w-[20%] text-center bg-green-500 text-white"
+    >
+      <% success.forEach(msg => { %>
+      <p><%= msg %></p>
+      <% }) %>
+    </div>
+    <% } %> <% if (loginSuccess && loginSuccess.length > 0) { %>
+    <div
+      
+      class="flash-message absolute top-[12rem] sm:top-[8rem] left-[90%] sm:left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[80%] sm:w-[20%] text-center bg-blue-500 text-white"
+    >
+      <% loginSuccess.forEach(msg => { %>
+      <p><%= msg %></p>
+      <% }) %>
+    </div>
+    <% } %>
 
     <div
       class="bg-[url('/images/imgs/signup-bg.svg')] bg-cover bg-center bg-no-repeat sm:min-h-screen w-full flex md:items-center mb-10"

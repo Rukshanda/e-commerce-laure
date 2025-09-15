@@ -3,7 +3,19 @@
   <%- include('./partials/head') %>
 
   <body>
-    <%- include('./partials/header') %>
+    <%- include('./partials/header') %> <% if (error && error.length > 0) { %>
+    <div
+      class="flash-message absolute top-[8rem] sm:top-[5rem] left-[90%] sm:left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[80%] sm:w-[20%] text-center bg-red-500 text-white"
+    >
+      <%= error %>
+    </div>
+    <% } %> <% if (success && success.length > 0) { %>
+    <div
+      class="flash-message absolute top-[8rem] sm:top-[5rem] left-[90%] sm:left-[60%] -translate-x-1/2 -translate-y-1/2 p-3 w-[80%] sm:w-[20%] text-center bg-green-500 text-white"
+    >
+      <%= success %>
+    </div>
+    <% } %>
 
     <div class="checkout max-w-auto py-20">
       <div
@@ -17,54 +29,93 @@
               <p class="text-4xl font-bold poppins">Checkout</p>
             </div>
             <div class="checkout-form xl:w-[80%] w-full">
-              <form action="" class="flex flex-col gap-4 pl-3">
+              <!-- ✅ EVERYTHING inside the form now -->
+              <form
+                action="/placeorder"
+                method="post"
+                class="flex flex-col gap-4 pl-3"
+              >
+                <!-- Email -->
                 <input
                   type="email"
+                  name="email"
                   placeholder="Enter Your Email"
                   class="p-4 border border-[#d4af37] placeholder-[#1c1c1c] outline-none"
+                  required
                 />
+
+                <!-- Phone -->
                 <input
                   type="number"
+                  name="contact"
                   placeholder="Enter Your Phone Number"
                   class="p-4 border border-[#d4af37] placeholder-[#1c1c1c] outline-none"
+                  required
                 />
+
+                <!-- Address -->
                 <input
                   type="text"
+                  name="address"
                   placeholder="Enter Your Address"
                   class="p-4 border border-[#d4af37] placeholder-[#1c1c1c] outline-none"
+                  required
                 />
-              </form>
-              <p class="font-medium poppins text-2xl pt-5 pb-5">
-                Payment Method
-              </p>
-              <div class="flex flex-col gap-4 pl-4">
-                <div
-                id="credit-btn"
-                  class="payment-option cursor-pointer credit-btn p-4 flex justify-between items-center border border-[#d4af37]"
-                >
-                  <span>Credit Card</span>
-                  <img src="/images/imgs/credit.svg" alt="" />
-                </div>
-                <div
-                id="cash-btn"
-                  class="payment-option cursor-pointer cash-btn p-4 flex justify-between items-center border border-[#d4af37]"
-                >
-                  <span>Cash on Delivery</span>
-                  <img src="/images/imgs/money.svg" alt="" />
-                </div>
 
-                <a href="placeorder" class="hover:text-inherit">
-                  <div
+                <!-- Payment Method -->
+                <p class="font-medium poppins text-2xl pt-5 pb-5">
+                  Payment Method
+                </p>
+                <div class="flex flex-col gap-4">
+                  <!-- CREDIT CARD OPTION -->
+                  <label
+                    for="credit"
+                    class="payment-option cursor-pointer p-4 flex justify-between items-center border border-[#d4af37]"
+                  >
+                    <span>Credit Card</span>
+                    <img src="/images/imgs/credit.svg" alt="Credit Card" />
+                    <input
+                      type="radio"
+                      id="credit"
+                      name="paymentMethod"
+                      value="credit"
+                      class="hidden"
+                      required
+                    />
+                  </label>
+
+                  <!-- CASH ON DELIVERY OPTION -->
+                  <label
+                    for="cash"
+                    class="payment-option cursor-pointer p-4 flex justify-between items-center border border-[#d4af37]"
+                  >
+                    <span>Cash on Delivery</span>
+                    <img src="/images/imgs/money.svg" alt="Cash" />
+                    <input
+                      type="radio"
+                      id="cash"
+                      name="paymentMethod"
+                      value="cash"
+                      class="hidden"
+                      required
+                    />
+                  </label>
+
+                  <!-- SUBMIT BUTTON -->
+                  <button
+                    type="submit"
                     class="my-4 placeorder-btn p-4 flex justify-between items-center border border-[#1c1c1c] bg-golden text-ivorywhite font-bold text-xl"
                   >
                     <span>Place Your Order</span>
-                    <img src="/images/imgs/placeorder.svg" alt="" />
-                  </div>
-                </a>
-              </div>
+                    <img src="/images/imgs/placeorder.svg" alt="Place Order" />
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
+
+        <!-- ORDER SUMMARY -->
         <div
           class="order-summary-container xl:px-20 sm:px-10 px-5 py-20 bg-charcolblack md:w-[50%] w-full flex flex-col gap-10"
         >
@@ -91,9 +142,7 @@
               </div>
 
               <span><%= item.name %></span>
-
               <span> Rs <%= item.total %> </span>
-
               <span>Qty: <%= item.quantity %></span>
 
               <!-- Remove Button -->
@@ -114,22 +163,27 @@
     </div>
 
     <%- include('./partials/footer') %>
+
     <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const paymentOptions = document.querySelectorAll(".payment-option");
+      document.addEventListener("DOMContentLoaded", () => {
+        const paymentOptions = document.querySelectorAll(".payment-option");
 
-    paymentOptions.forEach(option => {
-      option.addEventListener("click", () => {
-        // Remove golden background from all options
-        paymentOptions.forEach(opt => {
-          opt.classList.remove("bg-golden-card", "text-ivorywhite-card");
+        paymentOptions.forEach((option) => {
+          option.addEventListener("click", () => {
+            // Remove golden background from all
+            paymentOptions.forEach((opt) => {
+              opt.classList.remove("bg-golden-card", "text-ivorywhite-card");
+            });
+
+            // Add golden background to selected
+            option.classList.add("bg-golden-card", "text-ivorywhite-card");
+
+            // Check the hidden radio button
+            const radio = option.querySelector("input[type='radio']");
+            if (radio) radio.checked = true;
+          });
         });
-
-        // Add golden background to the clicked option
-        option.classList.add("bg-golden-card", "text-ivorywhite-card");
       });
-    });
-  });
-</script>
+    </script>
   </body>
 </html>

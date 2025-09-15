@@ -5,22 +5,23 @@ const { registerUser, loginUser, logout } = require("../controllers/authControll
 // GET Login Page
 router.get("/login", (req, res) => {
   res.render("login", { 
-    error: req.flash("error") // passing flash error
+    error: req.flash("error"),
+    success: req.flash("success"),         
+    loginSuccess: req.flash("loginSuccess")  
   });
 });
 
-// POST Login
+ 
 router.post("/login", loginUser);
 
-// GET Signup Page
+ 
 router.get("/register", (req, res) => {
   res.render("signup");
 });
-
-// POST Signup
+ 
 router.post("/register", registerUser);
 
-// Logout
+ 
 router.get("/logout", logout);
 
 module.exports = router;
