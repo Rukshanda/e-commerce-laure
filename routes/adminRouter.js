@@ -2,6 +2,8 @@
 const express = require("express");
 const router = express.Router();
 const adminModel = require("../models/adminModel");
+const cloudinary = require("cloudinary").v2;
+
 const jwt = require("jsonwebtoken");
 const isAdmin = require("../middleware/isAdmin");
 const upload = require("../config/multerconfig");
@@ -50,7 +52,6 @@ router.post("/create", async (req, res) => {
   }
 });
 
-
 router.get("/addproduct", isAdmin, (req, res) => {
   res.render("addproduct");
 });
@@ -81,9 +82,41 @@ router.post(
   upload.single("image"),
   async (req, res) => {
     try {
-      let { name, price, discount, amount, category, badge } = req.body;
-      let product = await productsModel.create({
-        image: req.file.buffer,
+      const { name, price, discount, amount, category, badge } = req.body;
+
+      if (!req.file) {
+        req.flash("error", "Please upload an image");
+        return res.redirect("/admin/addproduct");
+      }
+
+      // ✅ Wrap Cloudinary stream in a Promise
+      const cloudinaryUpload = () => {
+        return new Promise((resolve, reject) => {
+          const stream = cloudinary.uploader.upload_stream(
+            {
+              folder: "products",
+              resource_type: "image",
+            },
+            (error, result) => {
+              if (error) {
+                console.error("Cloudinary Upload Error:", error);
+                return reject(error);
+              }
+              resolve(result);
+            }
+          );
+
+          // Write file buffer to Cloudinary stream
+          stream.end(req.file.buffer);
+        });
+      };
+
+      // Wait for the upload to complete
+      const uploadResult = await cloudinaryUpload();
+
+      // ✅ Save product to database with Cloudinary image URL
+      await productsModel.create({
+        image: uploadResult.secure_url, // Cloudinary URL
         name,
         price,
         discount,
@@ -92,11 +125,13 @@ router.post(
         badge,
       });
 
-      console.log("✅ Product Created", product);
+      console.log("✅ Product Created Successfully");
       req.flash("success", "Product Created Successfully");
-      res.redirect("/admin/allproducts");
+      return res.redirect("/admin/allproducts");
     } catch (err) {
-      res.send(err.message);
+      console.error("Server Error:", err);
+      req.flash("error", "Server error");
+      res.redirect("/admin/addproduct");
     }
   }
 );

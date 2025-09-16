@@ -56,7 +56,6 @@ router.get("/cart", isLoggedIn, async (req, res) => {
   let user = await usersModel
     .findOne({ email: req.user.email })
     .populate("cart.product");
-  console.log(user);
   res.render("cart", { user });
 });
 // User Profile
@@ -73,7 +72,7 @@ router.get("/profile", isLoggedIn, async (req, res) => {
     // ✅ Retrieve success message
     const success = req.flash("success");
 
-    console.log("User Profile:", user);
+    console.log("User Profile:");
 
     // ✅ Pass it to the template
     res.render("userprofile", { user, success });
@@ -90,7 +89,6 @@ router.get("/productdetials/:id", isLoggedIn, async (req, res) => {
     if (!product) {
       return res.status(404).send("Product not found");
     }
-    console.log(product);
     res.render("productdetail", { product });
   } catch (error) {
     console.error(error);
@@ -256,7 +254,7 @@ router.get("/ordernow/:id", isLoggedIn, async (req, res) => {
     await user.save();
 
     console.log(
-      `Product "${product.name}" moved to orders and removed from cart`
+     'The product is removed from the cart and added to the orders array'
     );
     req.flash("success", "Ordered successfully");
     res.redirect("/checkout");

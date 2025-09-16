@@ -23,8 +23,9 @@
               class="product-img lg:w-[300px] md:w-[200px] flex justify-center"
             >
               <img
-                src="data:image/jpeg;base64,<%= product.image.toString('base64') %>"
-                alt=""
+                src="<%=  product.image  %>"
+                alt="<%= product.name %>"
+                class="object-cover"
               />
             </div>
             <div

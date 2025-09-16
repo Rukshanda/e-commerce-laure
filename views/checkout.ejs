@@ -135,9 +135,9 @@
               <!-- Product Image -->
               <div class="bg-golden sm:w-[80px] sm:h-[80px] w-[60px] h-[60px]">
                 <img
-                  src="data:image/jpeg;base64,<%= item.image.toString('base64') %>"
+                  src="<%= item.image %>"
                   alt="<%= item.name %>"
-                  class="size-full"
+                  class="object-cover"
                 />
               </div>
 

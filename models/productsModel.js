@@ -7,7 +7,9 @@ const mongoose = require("mongoose");
 const productSchema = mongoose.Schema({
     name: String,
     price: Number,
-       image: Buffer,
+  image: {
+    type: String, // ✅ store Cloudinary URL instead of Buffer
+  },
    discount: {
     type: Number,
     default: 0
