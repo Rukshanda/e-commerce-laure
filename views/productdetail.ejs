@@ -5,7 +5,6 @@
   <body>
     <%- include('./partials/header') %>
 
-
     <div class="productdetail-container max-w-auto">
       <div class="productdetail sm:px-20 px-2 py-10 poppins">
         <div class="heading poppins text-4xl font-semibold">
@@ -16,7 +15,7 @@
           class="productdetail-cards py-10 md:px-10 px-5 flex flex-col gap-8"
         >
           <!-- ------ productdetail-1 -->
-          
+
           <div
             class="productdetail-card lg:w-[800px] md:w-[600px] max-w-auto m flex md:flex-row flex-col border border-[#d4af37]"
           >
@@ -54,28 +53,25 @@
                   >
                     <span>Discount: Rs <%= product.discount %> </span>
                     <span
-                      >Total: Rs <%= product.quantity * (product.price -
-                      product.discount) %></span
-                    >
+                      >Total: Rs <%= (Number(product.quantity) || 1) *
+                      (Number(product.price) - Number(product.discount)) %>
+                    </span>
                   </div>
                 </div>
               </div>
               <div class="cta md:px-5 px-2">
-                <div
-                  class="addtocart-btn flex justify-between cursor-pointer items-center bg-golden text-charcolblack p-2"
+                <a
+                  href="/addToCart/<%= product._id %>"
+                  class="addtocart-btn hover:text-inherit flex justify-between cursor-pointer items-center bg-golden text-charcolblack p-2"
                 >
                   <span class="lg:text-[18px] sm:text-[16px] font-semibold">
-                    <a href="/addToCart/<%= product._id %>" class="hover:text-inherit">
-                      Add To Cart
-                    </a>
+                    Add To Cart
                   </span>
                   <span><img src="/images/imgs/cart.svg" alt="" /></span>
-                </div>
+                </a>
               </div>
             </div>
           </div>
-
-         
         </div>
       </div>
     </div>

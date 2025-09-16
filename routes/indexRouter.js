@@ -268,20 +268,19 @@ router.get("/ordernow/:id", isLoggedIn, async (req, res) => {
 });
 
 // Delete Functionality
-
 router.get("/cart/remove/:productId", isLoggedIn, async (req, res) => {
   try {
-    const productId = new mongoose.Types.ObjectId(req.params.productId);
+    const productId = req.params.productId;
 
-    await usersModel.findOneAndUpdate(
+    const result = await usersModel.findOneAndUpdate(
       { email: req.user.email },
-      { $pull: { cart: productId } },
+      { $pull: { cart: { product: productId } } },
       { new: true }
     );
 
     res.redirect("/cart");
   } catch (err) {
-    console.error(err);
+    console.error("Error removing product:", err);
     res.status(500).send("Server error");
   }
 });

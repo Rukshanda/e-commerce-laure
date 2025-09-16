@@ -50,7 +50,7 @@
                     <span>Discount: Rs <%= item.product.discount %> </span>
                     <span
                       >Total: Rs <%= item.quantity * (item.product.price -
-                      item.product.discount) %>>
+                      item.product.discount) %>
                     </span>
                   </div>
                 </div>
@@ -73,17 +73,17 @@
                     </a>
                   </span>
                 </div>
-                <div class="order-btn bg-golden text-charcolblack p-2">
-                  <a
-                    href="/ordernow/<%= item.product._id %>"
-                    class="flex justify-between items-center outline-none hover:text-[#1c1c1c]"
-                  >
+                <a
+                  href="/ordernow/<%= item.product._id %>"
+                  class="order-btn bg-golden text-charcolblack p-2 outline-none hover:text-[#1c1c1c]"
+                >
+                  <div class="flex justify-between items-center">
                     <span class="lg:text-[16px] sm:text-[16px] font-semibold"
                       >Order Now</span
                     >
                     <span><img src="/images/imgs/bag.svg" alt="" /></span>
-                  </a>
-                </div>
+                  </div>
+                </a>
               </div>
             </div>
             <div class="absolute top-[5%] sm:left-[93%] left-[85%]">
@@ -100,14 +100,15 @@
     <!-- --------- Cart BTNS -->
 
     <div class="cart-btns sm:px-[7.5rem] px-8 w-full pb-10">
-      <div
-        class="car-btn-btn flex justify-between items-center bg-golden text-charcolblack p-4 md:w-[25%] w-[100%] pulse-grow cursor-pointer border-2 border-[#1c1c1c]"
+      <a
+        href="/checkout-all"
+        class="car-btn-btn hover:text-inherit flex justify-between items-center bg-golden text-charcolblack p-4 md:w-[25%] w-[100%] pulse-grow cursor-pointer border-2 border-[#1c1c1c]"
       >
         <span class="lg:text-[16px] sm:text-[16px] font-semibold">
-          <a href="/checkout-all" class="hover:text-inherit"> Checkout </a>
+          Checkout
         </span>
         <span><img src="/images/imgs/money.svg" alt="" /></span>
-      </div>
+      </a>
     </div>
 
     <%- include('./partials/footer') %>

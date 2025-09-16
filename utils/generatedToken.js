@@ -8,7 +8,7 @@ const generatedToken = (user) => {
     },
     process.env.JWT_SECRET, // secret key stored in .env
     {
-      expiresIn: "1d", // token validity (1 day)
+      expiresIn: "8d", // token validity (1 day)
     }
   );
 };
