@@ -313,42 +313,40 @@
     <!-- ----- Gallery Section -->
     <div class="gallery relative max-w-[1600px] mx-auto">
       <div class="w-full sm:p-8 p-[10px]">
-        <div
-          class="grid md:grid-cols-[1fr_2fr_1fr_1fr] sm:grid-cols-[1fr_2fr_1fr] grid-cols-[1fr_1fr] md:grid-rows-[1fr_1fr] sm:grid-rows-[1fr_1fr_1fr] grid-rows-[1fr_1fr_1fr_1fr] gap-2 sm:gap-5 p-2.5 sm:h-[130vh] h-[150vh]"
-        >
-          <!-- item 1 -->
-          <div
-            class="gallery-card opacity-0 bg-[url('/images/imgs/gallery-8.svg')] bg-cover bg-no-repeat bg-center col-start-1 row-start-2 border-2 border-[#d4af37]"
-          ></div>
-          <!-- item 1 -->
-          <div
-            class="gallery-card opacity-0 bg-[url('/images/imgs/gallery-1.svg')] bg-cover bg-no-repeat bg-center border-2 border-[#d4af37]"
-          ></div>
+  <div
+  class="grid md:grid-cols-[1fr_2fr_1fr_1fr] sm:grid-cols-[1fr_2fr_1fr] grid-cols-[1fr_1fr] md:grid-rows-[1fr_1fr] sm:grid-rows-[1fr_1fr_1fr] grid-rows-[1fr_1fr_1fr_1fr] gap-2 sm:gap-5 p-2.5 sm:h-[130vh] h-[150vh]"
+>
+  <!-- item 1 -->
+  <div class="gallery-card opacity-0 col-start-1 row-start-2 border-2 border-[#d4af37] overflow-hidden">
+    <img src="/images/imgs/gallery-8.svg" class="w-full h-full object-cover" loading="lazy" alt="" />
+  </div>
 
-          <!-- item 2 (span full height, middle column) -->
-          <div
-            class="gallery-card opacity-0 row-span-2 col-start-2 bg-[url('/images/imgs/gallery-2.svg')] bg-no-repeat bg-top border-2 border-[#d4af37]"
-          ></div>
+  <!-- item 2 -->
+  <div class="gallery-card opacity-0 border-2 border-[#d4af37] overflow-hidden">
+    <img src="/images/imgs/gallery-1.svg" class="w-full h-full object-cover" loading="lazy" alt="" />
+  </div>
 
-          <!-- item 3 -->
-          <div
-            class="gallery-card col-start-2 row-start-3 sm:col-start-3 sm:col-span-2 sm:row-start-1 md:col-start-3 md:col-span-1 md:row-start-1 opacity-0 bg-[url('/images/imgs/gallery-3.svg')] bg-no-repeat bg-top border-2 border-[#d4af37]"
-          ></div>
+  <!-- item 3 (span full height, middle column) -->
+  <div class="gallery-card opacity-0 row-span-2 col-start-2 border-2 border-[#d4af37] overflow-hidden">
+    <img src="/images/imgs/gallery-2.svg" class="w-full h-full object-top" loading="lazy" alt="" />
+  </div>
 
-          <!-- item 4 -->
-          <div
-            class="gallery-card sm:col-start-2 row-start-3 sm:col-start-3 sm:col-span-1 sm:row-start-2 md:col-start-4 md:col-span-1 md:row-start-1 opacity-0 bg-[url('/images/imgs/gallery-4.svg')] bg-no-repeat bg-center border-2 border-[#d4af37]"
-          ></div>
+  <!-- item 4 -->
+  <div class="gallery-card opacity-0 sm:col-start-3 sm:col-span-2 sm:row-start-1 md:col-start-3 md:col-span-1 md:row-start-1 border-2 border-[#d4af37] overflow-hidden">
+    <img src="/images/imgs/gallery-3.svg" class="w-full h-full object-top" loading="lazy" alt="" />
+  </div>
 
-          <!-- item 5 (under item 3) -->
-          <div
-            class="gallery-card opacity-0 col-span-1 row-start-4 col-start-2 sm:col-span-2 sm:row-start-3 md:col-start-3 md:col-span-1 md:row-start-2 bg-[url('/images/imgs/gallery-5.svg')] bg-cover bg-no-repeat bg-center border-2 border-[#d4af37]"
-          ></div>
+  <!-- item 5 -->
+  <div class="gallery-card opacity-0 col-span-1 row-start-4 col-start-2 sm:col-span-2 sm:row-start-3 md:col-start-3 md:col-span-1 md:row-start-2 border-2 border-[#d4af37] overflow-hidden">
+    <img src="/images/imgs/gallery-5.svg" class="w-full h-full object-cover" loading="lazy" alt="" />
+  </div>
 
-          <div
-            class="gallery-card opacity-0 bg-top md:col-start-4 col-start-1 md:row-start-2 sm:row-start-3 row-start-4 bg-[url('/images/imgs/gallery-6.svg')] bg-cover bg-no-repeat md:bg-center border-2 border-[#d4af37]"
-          ></div>
-        </div>
+  <!-- item 6 -->
+  <div class="gallery-card opacity-0 md:col-start-4 col-start-1 md:row-start-2 sm:row-start-3 row-start-4 border-2 border-[#d4af37] overflow-hidden">
+    <img src="/images/imgs/gallery-6.svg" class="w-full h-full object-center" loading="lazy" alt="" />
+  </div>
+</div>
+
         <!-- item 5 (under item 3) -->
       </div>
 
@@ -375,5 +373,6 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script src="/javascripts/script.js"></script>
+
   </body>
 </html>
