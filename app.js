@@ -10,6 +10,10 @@ const flash = require("connect-flash");
 const jwt = require("jsonwebtoken");
 const cloudinary = require("cloudinary").v2;
 
+// ✅ Performance & Security
+const compression = require("compression");
+
+
 // ✅ Routers
 const adminRouter = require("./routes/adminRouter");
 const indexRouter = require("./routes/indexRouter");
@@ -28,7 +32,18 @@ cloudinary.config({
 const connectDB = require("./config/db");
 connectDB();
 
-// ✅ Middleware
+
+
+
+app.use(compression()); // GZIP compression
+app.use(express.static(path.join(__dirname, "public")));
+
+
+app.use(flash());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
 app.use(cookieParser());
 app.use(
   expressSession({
@@ -37,11 +52,6 @@ app.use(
     secret: process.env.EXPRESS_SESSION_SECRET,
   })
 );
-
-app.use(flash());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
 
 // ✅ Set EJS as view engine
 app.set("view engine", "ejs");

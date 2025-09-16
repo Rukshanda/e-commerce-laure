@@ -1,9 +1,3 @@
-
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".card");
 
@@ -40,41 +34,30 @@ document.addEventListener("DOMContentLoaded", () => {
   cards.forEach((card) => observer.observe(card));
 });
 
-
-
-
-  const swiper = new Swiper(".mySwiper", {
-      modules: [],
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
-      speed: 1200,
-      loop: true,
-      spaceBetween: 60,
-      breakpoints: {
-        1280: { slidesPerView: 3 },
-        768: { slidesPerView: 2 },
-        450: { slidesPerView: 1 },
-        0: { slidesPerView: 1 },
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
-
-
-
-
-
-
-
-
+const swiper = new Swiper(".mySwiper", {
+  modules: [],
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  speed: 1200,
+  loop: true,
+  spaceBetween: 60,
+  breakpoints: {
+    1280: { slidesPerView: 3 },
+    768: { slidesPerView: 2 },
+    450: { slidesPerView: 1 },
+    0: { slidesPerView: 1 },
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   const galleryCards = document.querySelectorAll(".gallery-card");
@@ -85,10 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (entry.isIntersecting) {
           // Add animation only when entering viewport
           entry.target.classList.remove("opacity-0");
-          entry.target.classList.add(
-            "animate__animated",
-            "animate__pulse"
-          );
+          entry.target.classList.add("animate__animated", "animate__pulse");
 
           // Restart animation each time by forcing reflow
           entry.target.addEventListener(
@@ -111,4 +91,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   galleryCards.forEach((card) => observer.observe(card));
 });
-

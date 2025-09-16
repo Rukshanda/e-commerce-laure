@@ -14,6 +14,7 @@
     "animate.css": "^4.1.1",
     "bcrypt": "^6.0.0",
     "cloudinary": "^2.7.0",
+    "compression": "^1.8.1",
     "config": "^4.1.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.7",
@@ -27,6 +28,7 @@
     "nodemon": "^3.1.10",
     "serverless-http": "^4.0.0",
     "swiper": "^11.2.10",
+    "tailwind": "^4.0.0",
     "tailwindcss": "^4.1.12"
   },
   "devDependencies": {
