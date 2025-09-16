@@ -311,61 +311,80 @@
     </div>
 
     <!-- ----- Gallery Section -->
-    <div class="gallery relative max-w-[1600px] mx-auto">
-      <div class="w-full sm:p-8 p-[10px]">
-  <div
-  class="grid md:grid-cols-[1fr_2fr_1fr_1fr] sm:grid-cols-[1fr_2fr_1fr] grid-cols-[1fr_1fr] md:grid-rows-[1fr_1fr] sm:grid-rows-[1fr_1fr_1fr] grid-rows-[1fr_1fr_1fr_1fr] gap-2 sm:gap-5 p-2.5 sm:h-[130vh] h-[150vh]"
->
-  <!-- item 1 -->
-  <div class="gallery-card opacity-0 col-start-1 row-start-2 border-2 border-[#d4af37] overflow-hidden">
-    <img src="/images/imgs/gallery-8.svg" class="w-full h-full object-cover" loading="lazy" alt="" />
-  </div>
-
-  <!-- item 2 -->
-  <div class="gallery-card opacity-0 border-2 border-[#d4af37] overflow-hidden">
-    <img src="/images/imgs/gallery-1.svg" class="w-full h-full object-cover" loading="lazy" alt="" />
-  </div>
-
-  <!-- item 3 (span full height, middle column) -->
-  <div class="gallery-card opacity-0 row-span-2 col-start-2 border-2 border-[#d4af37] overflow-hidden">
-    <img src="/images/imgs/gallery-2.svg" class="w-full h-full object-top" loading="lazy" alt="" />
-  </div>
-
-  <!-- item 4 -->
-  <div class="gallery-card opacity-0 sm:col-start-3 sm:col-span-2 sm:row-start-1 md:col-start-3 md:col-span-1 md:row-start-1 border-2 border-[#d4af37] overflow-hidden">
-    <img src="/images/imgs/gallery-3.svg" class="w-full h-full object-top" loading="lazy" alt="" />
-  </div>
-
-  <!-- item 5 -->
-  <div class="gallery-card opacity-0 col-span-1 row-start-4 col-start-2 sm:col-span-2 sm:row-start-3 md:col-start-3 md:col-span-1 md:row-start-2 border-2 border-[#d4af37] overflow-hidden">
-    <img src="/images/imgs/gallery-5.svg" class="w-full h-full object-cover" loading="lazy" alt="" />
-  </div>
-
-  <!-- item 6 -->
-  <div class="gallery-card opacity-0 md:col-start-4 col-start-1 md:row-start-2 sm:row-start-3 row-start-4 border-2 border-[#d4af37] overflow-hidden">
-    <img src="/images/imgs/gallery-6.svg" class="w-full h-full object-center" loading="lazy" alt="" />
-  </div>
-</div>
-
-        <!-- item 5 (under item 3) -->
+<div class="gallery relative max-w-[1600px] mx-auto pb-[120px]">
+  <div class="w-full sm:p-8 p-[10px]">
+    <div
+      class="grid 
+             md:grid-cols-[1fr_2fr_1fr_1fr] 
+             sm:grid-cols-[1fr_2fr_1fr] 
+             grid-cols-[1fr_1fr]
+             md:auto-rows-[minmax(150px,_1fr)] 
+             sm:auto-rows-[minmax(120px,_1fr)] 
+             auto-rows-[minmax(100px,_1fr)]
+             gap-2 sm:gap-5 p-2.5"
+    >
+      <!-- Item 1 -->
+      <div class="gallery-card col-start-1 row-start-2">
+        <img src="/images/imgs/gallery-8.svg" loading="lazy" alt=""
+          class=" border-solid border-2 border-[#d4af37]  object-cover w-full h-full" />
       </div>
 
-      <!-- heading -->
+      <!-- Item 2 -->
+      <div class="gallery-card">
+        <img src="/images/imgs/gallery-1.svg" loading="lazy" alt=""
+          class=" border-solid border-2 border-[#d4af37]  object-cover w-full h-full" />
+      </div>
 
-      <div class="gallery-heading flex justify-center items-center">
-        <div class="absolute z-10 top-[45%]">
-          <div
-            class="uppercase md:text-[180px] sm:text-[150px] text-[60px] font-bold playfair flex flex-row sm:gap-[120px] text-ivorytransparent"
-          >
-            <span>L</span>
-            <span>a</span>
-            <span>u</span>
-            <span>r</span>
-            <span>é.</span>
-          </div>
-        </div>
+      <!-- Item 3 (tall image spanning 2 rows in middle column) -->
+      <div class="gallery-card row-span-2 col-start-2">
+        <img src="/images/imgs/gallery-2.svg" loading="lazy" alt=""
+          class=" border-solid border-2 border-[#d4af37]  object-cover w-full h-full" />
+      </div>
+
+      <!-- Item 4 (wide image responsive placement) -->
+      <div
+        class="gallery-card col-start-2 row-start-3 
+               sm:col-start-3 sm:col-span-2 sm:row-start-1 
+               md:col-start-3 md:col-span-1 md:row-start-1"
+      >
+        <img src="/images/imgs/gallery-3.svg" loading="lazy" alt=""
+          class=" border-solid border-2 border-[#d4af37]  object-cover w-full h-full" />
+      </div>
+
+      <!-- Item 5 -->
+      <div
+        class="gallery-card 
+               sm:col-start-3 sm:row-start-2 
+               md:col-start-4 md:row-start-1"
+      >
+        <img src="/images/imgs/gallery-4.svg" loading="lazy" alt=""
+          class=" border-solid border-2 border-[#d4af37]  object-cover w-full h-full" />
+      </div>
+
+      <!-- Item 6 (below item 4) -->
+      <div
+        class="gallery-card col-span-1 row-start-4 col-start-2
+               sm:col-span-2 sm:row-start-3
+               md:col-start-3 md:col-span-1 md:row-start-2"
+      >
+        <img src="/images/imgs/gallery-5.svg" loading="lazy" alt=""
+          class=" border-solid border-2 border-[#d4af37]  object-cover w-full h-full" />
+      </div>
+
+      <!-- Item 7 -->
+      <div
+        class="gallery-card md:col-start-4 col-start-1 
+               md:row-start-2 sm:row-start-3 row-start-4"
+      >
+        <img src="/images/imgs/gallery-6.svg" loading="lazy" alt=""
+          class=" border-solid border-2 border-[#d4af37]  object-cover w-full h-full" />
       </div>
     </div>
+  </div>
+
+  <!-- Heading Overlay -->
+  <div class="gallery-heading flex justify-center items-center"> <div class="absolute z-10 top-[45%]"> <div class="uppercase md:text-[180px] sm:text-[150px] text-[60px] font-bold playfair flex flex-row sm:gap-[120px] text-ivorytransparent" > <span>L</span> <span>a</span> <span>u</span> <span>r</span> <span>é.</span> </div> </div> </div> </div>
+
 
     <!-- --- Footer -->
     <%- include("partials/footer") %>
