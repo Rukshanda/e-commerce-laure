@@ -266,41 +266,107 @@ router.get("/ordernow/:id", isLoggedIn, async (req, res) => {
 });
 
 // Delete Functionality
-router.get("/cart/remove/:productId", isLoggedIn, async (req, res) => {
+ router.get("/cart/remove/:productId", isLoggedIn, async (req, res) => {
   try {
     const productId = req.params.productId;
 
-    const result = await usersModel.findOneAndUpdate(
-      { email: req.user.email },
-      { $pull: { cart: { product: productId } } },
-      { new: true }
+    // 1️⃣ Find the logged-in user
+    const user = await usersModel.findOne({ email: req.user.email });
+
+    if (!user) {
+      req.flash("error", "User not found");
+      return res.redirect("/cart");
+    }
+
+    // 2️⃣ Find the product in the user's cart
+    const cartItem = user.cart.find(
+      (item) => item.product.toString() === productId
     );
 
+    if (!cartItem) {
+      req.flash("error", "Item not found in your cart");
+      return res.redirect("/cart");
+    }
+
+    // 3️⃣ If quantity > 1, just decrement
+    if (cartItem.quantity > 1) {
+      cartItem.quantity -= 1;
+    } else {
+      // 4️⃣ If quantity is 1, remove the item entirely
+      user.cart = user.cart.filter(
+        (item) => item.product.toString() !== productId
+      );
+    }
+
+    // 5️⃣ Save the updated user
+    await user.save();
+
+    req.flash("success", "Item removed successfully");
     res.redirect("/cart");
   } catch (err) {
     console.error("Error removing product:", err);
-    res.status(500).send("Server error");
+    req.flash("error", "Something went wrong while removing the product");
+    res.redirect("/cart");
   }
 });
 
-// Delete Functionality for Orders
+
+ // Delete Functionality for Orders
 router.get("/orders/remove/:productId", isLoggedIn, async (req, res) => {
   try {
     const productId = req.params.productId;
+    console.log("Incoming productId:", productId);
 
-    await usersModel.findOneAndUpdate(
-      { email: req.user.email },
-      { $pull: { orders: { product: productId } } }, // ✅ correct structure
-      { new: true }
+    const user = await usersModel.findOne({ email: req.user.email });
+
+    if (!user) {
+      console.log("User not found:", req.user.email);
+      req.flash("error", "User not found");
+      return res.redirect("/checkout");
+    }
+
+    console.log("User found. Orders:", user.orders);
+
+    // Find the specific order item
+    const orderItem = user.orders.find(
+      (item) => item.product.toString() === productId
     );
 
-    req.flash("success", "Item removed from checkout");
-    res.redirect("/checkout");
+    if (!orderItem) {
+      console.log("Order item not found for productId:", productId);
+      req.flash("error", "Item not found in your orders");
+      return res.redirect("/checkout");
+    }
+
+    console.log("Order item before update:", orderItem);
+
+    // ✅ Decrease quantity or remove item
+    if (orderItem.quantity > 1) {
+      orderItem.quantity -= 1;
+      console.log("Quantity decremented to:", orderItem.quantity);
+    } else {
+      // Remove the item completely
+      user.orders = user.orders.filter(
+        (item) => item.product.toString() !== productId
+      );
+      console.log("Order item removed completely.");
+    }
+
+    // **Important**: Tell Mongoose the array was modified
+    user.markModified("orders");
+
+    await user.save();
+    console.log("User order updated successfully!");
+
+    req.flash("success", "Item updated in checkout");
+    return res.redirect("/checkout");
   } catch (err) {
-    console.error(err);
+    console.error("Error in /orders/remove route:", err.message);
+    console.error(err.stack);
     res.status(500).send("Server error");
   }
 });
+
 
 // INcrement Functionality
 router.get("/cart/inc/:id", isLoggedIn, async (req, res) => {
